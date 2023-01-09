@@ -4,11 +4,15 @@ import "./index.css"
 
 /* RoomSelectionButton component definition */
 interface RoomSelectionButtonProps {
-  key?: string,
+  id: string,
   label?: string,
 }
-function RoomSelectionButton({ label }: RoomSelectionButtonProps) {
-  return <button className="room-selection-button">{label}</button>
+function RoomSelectionButton({ label, id }: RoomSelectionButtonProps) {
+  function handleClick() {
+    console.log(id);
+  }
+
+  return <button onClick={handleClick} className="room-selection-button">{label}</button>
 }
 
 /* RoomSelection component definition */
@@ -19,7 +23,7 @@ function RoomSelection({ rooms }: RoomSelectionProps) {
   return (
     <>
       {rooms.map(({ label, id }) => (
-        <RoomSelectionButton key={id} label={label} />
+        <RoomSelectionButton key={id} id={id} label={label} />
       ))}
     </>
   );
