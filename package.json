@@ -1,5 +1,5 @@
 {
-  "name": "soundcloud-rooms-client",
+  "name": "listening-rooms-client",
   "version": "1.0.0",
   "description": "Client for a synchronized SoundCloud listening rooms application.",
   "private": true,
