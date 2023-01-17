@@ -1,19 +1,7 @@
 import React from "react";
 import { Room } from "../../types/room";
-import "./index.css"
-
-/* RoomSelectionButton component definition */
-interface RoomSelectionButtonProps {
-  id: string,
-  label?: string,
-}
-function RoomSelectionButton({ label, id }: RoomSelectionButtonProps) {
-  function handleClick() {
-    console.log(id);
-  }
-
-  return <button onClick={handleClick} className="room-selection-button">{label}</button>
-}
+import "./index.css";
+import RoomSelectionButton from "./RoomSelectionButton";
 
 /* RoomSelection component definition */
 interface RoomSelectionProps {
@@ -23,7 +11,9 @@ function RoomSelection({ rooms }: RoomSelectionProps) {
   return (
     <>
       {rooms.map(({ label, id }) => (
-        <RoomSelectionButton key={id} id={id} label={label} />
+        <>
+          <RoomSelectionButton key={id} id={id} label={label} />
+        </>
       ))}
     </>
   );
