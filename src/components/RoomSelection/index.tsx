@@ -1,19 +1,17 @@
 import React from "react";
-import { Room } from "../../types/room";
+import { Room } from "./room-interface";
 import "./index.css";
 import RoomSelectionButton from "./RoomSelectionButton";
 
-/* RoomSelection component definition */
 interface RoomSelectionProps {
   rooms: Array<Room>;
 }
+
 function RoomSelection({ rooms }: RoomSelectionProps) {
   return (
     <>
       {rooms.map(({ label, id }) => (
-        <>
-          <RoomSelectionButton key={id} id={id} label={label} />
-        </>
+        <RoomSelectionButton key={id} id={id} label={label} />
       ))}
     </>
   );

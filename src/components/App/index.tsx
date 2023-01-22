@@ -1,6 +1,6 @@
 import React from "react"
 import "./index.css";
-import RoomSelection from "./RoomSelection";
+import RoomSelection from "../RoomSelection";
 
 function App() {
   return <div className="container">
