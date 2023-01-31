@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Room } from "../Room/interface";
+import { Room } from "../../types/interface";
 import "./index.css";
 import RoomSelectionButton from "./RoomSelectionButton";
 

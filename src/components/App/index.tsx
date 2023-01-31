@@ -1,7 +1,7 @@
 import React from "react";
 import RoomSelection from "../RoomSelection";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Room from "../Room";
+import Room from "../RoomView";
 
 const rooms = [
   { id: "1", label: "Room 1" },
