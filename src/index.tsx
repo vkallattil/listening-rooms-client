@@ -1,19 +1,13 @@
-import React from "react"
-import { createRoot } from "react-dom/client"
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom"
+import React from "react";
+import { createRoot } from "react-dom/client";
 import App from "./components/App";
+import "./index.css";
 
 const rootNode = document.getElementById("root");
 const root = createRoot(rootNode);
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-]);
-
-root.render(<RouterProvider router={router} />);
+root.render(
+  <div className="container">
+    <App />
+  </div>
+);
