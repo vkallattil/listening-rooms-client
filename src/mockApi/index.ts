@@ -12,11 +12,9 @@ const rooms = [
 ];
 
 export function getRoom(id: string): Room {
-  return rooms.filter((room) => {
-    room.id === id;
-  })[0];
+  return rooms.find((room) => room.id === id);  
 }
 
-export function getRooms() {
+export function getRooms(): Room[] {
   return rooms;
 }

@@ -1,12 +1,8 @@
 import React from "react";
-import { Room } from "../../types/interface";
+import { getRoom } from "../../mockApi";
 
-interface RoomViewProps {
-  rooms: Room[];
-}
-
-function RoomView({ rooms }: RoomViewProps) {
-  const room = rooms.find((room) => room.id === "1");
+function RoomView() {
+  const room = getRoom('1');
   return <div>{room.label}</div>;
 }
 

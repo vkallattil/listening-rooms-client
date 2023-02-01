@@ -1,14 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Room } from "../../types/interface";
 import "./index.css";
 import RoomSelectionButton from "./RoomSelectionButton";
+import { getRooms } from "../../mockApi";
 
-interface RoomSelectionProps {
-  rooms: Array<Room>;
-}
-
-function RoomSelection({ rooms }: RoomSelectionProps) {
+function RoomSelection() {
+  const rooms = getRooms();
   return (
     <>
       <div className="room-selection">
