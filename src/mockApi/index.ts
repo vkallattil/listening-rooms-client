@@ -1,6 +1,6 @@
-import { Room } from "../types/room";
+import { Room } from "../types";
 
-const rooms = [
+const rooms: Room[] = [
   { id: "1", label: "Room 1" },
   { id: "2", label: "Room 2" },
   { id: "3", label: "Room 3" },
@@ -12,7 +12,7 @@ const rooms = [
 ];
 
 export function getRoom(id: string): Room {
-  return rooms.find((room) => room.id === id);  
+  return rooms.find((room: Room) => room.id === id);
 }
 
 export function getRooms(): Room[] {

@@ -3,10 +3,10 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import "./index.css";
 import RoomSelectionButton from "./RoomSelectionButton";
 import { getRooms } from "../../mockApi";
-import { Room } from "../../types/room";
+import { Room } from "../../types";
 
 export function loader() {
-  const rooms = getRooms();
+  const rooms: Room[] = getRooms();
   return { rooms };
 }
 

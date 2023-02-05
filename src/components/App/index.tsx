@@ -1,6 +1,6 @@
 import React from "react";
-import RoomSelection, { loader as roomsLoader } from "../RoomSelection";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RoomSelection, { loader as roomsLoader } from "../RoomSelection";
 import Room, { loader as roomLoader } from "../RoomView";
 
 const router = createBrowserRouter([
