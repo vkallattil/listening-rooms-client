@@ -1,8 +1,15 @@
 import React from "react";
+import { useLoaderData, LoaderFunctionArgs } from "react-router-dom";
 import { getRoom } from "../../mockApi";
+import { Room } from "../../types/room";
+
+export function loader({ params }: LoaderFunctionArgs) {
+  const room = getRoom(params.roomId);
+  return { room };
+}
 
 function RoomView() {
-  const room = getRoom('1');
+  const { room } = useLoaderData() as { room: Room };
   return <div>{room.label}</div>;
 }
 

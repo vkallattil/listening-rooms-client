@@ -1,4 +1,4 @@
-import { Room } from "../types/interface";
+import { Room } from "../types/room";
 
 const rooms = [
   { id: "1", label: "Room 1" },

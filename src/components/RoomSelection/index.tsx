@@ -1,11 +1,17 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import "./index.css";
 import RoomSelectionButton from "./RoomSelectionButton";
 import { getRooms } from "../../mockApi";
+import { Room } from "../../types/room";
+
+export function loader() {
+  const rooms = getRooms();
+  return { rooms };
+}
 
 function RoomSelection() {
-  const rooms = getRooms();
+  const { rooms } = useLoaderData() as { rooms: Room[] };
   return (
     <>
       <div className="room-selection">
