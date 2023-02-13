@@ -12,7 +12,7 @@ function RoomSelectionButton({ label, id }: RoomSelectionButtonProps) {
   }
 
   return (
-    <Link to={`/room/${id}`}>
+    <Link to={`/rooms/${id}`} className="room-selection-link">
       <button onClick={handleClick} className="room-selection-button">
         {label}
       </button>
