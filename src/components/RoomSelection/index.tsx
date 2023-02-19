@@ -2,11 +2,12 @@ import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import "./index.css";
 import RoomSelectionButton from "./RoomSelectionButton";
-import { getRooms } from "../../mockApi";
+import { getRooms } from "../../api";
 import { Room } from "../../types";
 
-export function loader() {
-  const rooms: Room[] = getRooms();
+export async function loader() {
+  const response = await getRooms();
+  const rooms = response.data
   return { rooms };
 }
 

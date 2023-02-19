@@ -1,10 +1,11 @@
 import React from "react";
 import { useLoaderData, LoaderFunctionArgs } from "react-router-dom";
-import { getRoom } from "../../mockApi";
+import { getRoom } from "../../api";
 import { Room } from "../../types";
 
-export function loader({ params }: LoaderFunctionArgs) {
-  const room = getRoom(params.roomId);
+export async function loader({ params }: LoaderFunctionArgs) {
+  const response = await getRoom(params.roomId);
+  const room = response.data;
   return { room };
 }
 
