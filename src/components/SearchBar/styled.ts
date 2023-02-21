@@ -18,7 +18,7 @@ export const SearchIconContainer = styled.div<{ focus: boolean }>`
   height: 45px;
   background-color: #ffffff;
   border: 2px solid ${(props) => (props.focus ? "#FFABAB" : "#E4E4E4")};
-  transition: 0.4s;
+  transition: 0.2s;
   border-radius: 6px 0px 0px 6px;
   box-sizing: border-box;
   border-right: none;
@@ -28,7 +28,7 @@ export const SearchIcon = styled(FontAwesomeIcon)<{ focus: boolean }>`
   width: 14px;
   height: 14px;
   color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
-  transition: 0.4s;
+  transition: 0.2s;
 `;
 
 export const SearchBar = styled.input<{ focus: boolean }>`
@@ -46,7 +46,7 @@ export const SearchBar = styled.input<{ focus: boolean }>`
   font-size: 16px;
   font-weight: 600;
   color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
-  transition: 0.4s;
+  transition: 0.2s;
   &::-webkit-search-cancel-button {
     display: none;
   }
@@ -56,6 +56,6 @@ export const SearchBar = styled.input<{ focus: boolean }>`
   }
   &::placeholder {
     color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
-    transition: 0.4s;
+    transition: 0.2s;
   }
 `;

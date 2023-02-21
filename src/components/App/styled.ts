@@ -52,5 +52,5 @@ export const Panel = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 0px 10px;
+  padding: 30px;
 `;

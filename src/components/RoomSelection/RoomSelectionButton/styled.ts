@@ -7,7 +7,7 @@ export const Link = styled(NavLink)<{ isActive: boolean }>`
   border: none;
   border-bottom: 1px solid #e4e4e4;
   background-color: ${(props) => (props.isActive ? "#FFC2C2" : "#ffffff")};
-  padding: 0 10px;
+  padding: 0 15px;
   height: 45px;
   display: flex;
   align-items: center;
@@ -29,8 +29,8 @@ export const Icon = styled(FontAwesomeIcon)`
 `;
 
 export const LockIcon = styled(FontAwesomeIcon)<{ isPrivate?: boolean }>`
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   margin-right: 10px;
   visibility: ${(props) => (props.isPrivate ? "visible" : "hidden")};
 `;

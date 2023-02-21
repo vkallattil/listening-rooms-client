@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App, { loader as roomsLoader } from "../App";
 import Room, { loader as roomLoader } from "../RoomView";
+import IndexPage from "../IndexPage";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Select a room</div>,
+        element: <IndexPage />,
       },
       {
         path: "/rooms/:roomId",
