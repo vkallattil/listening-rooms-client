@@ -1,7 +1,7 @@
 import React from "react";
 import { Room } from "../../types";
 import RoomSelectionButton from "./RoomSelectionButton";
-import * as styled from "./styled"
+import * as styled from "./styled";
 
 interface RoomSelectionProps {
   rooms: Room[];
@@ -10,12 +10,36 @@ interface RoomSelectionProps {
 function RoomSelection({ rooms }: RoomSelectionProps) {
   return (
     <styled.RoomSelectionContainer>
-      {rooms.map(({ label, id }, index) => {
+      {rooms.map(({ label, id, isPrivate, userCount }, index) => {
         if (index === 0)
-          return <RoomSelectionButton first key={id} label={label} id={id} />;
+          return (
+            <RoomSelectionButton
+              isPrivate={isPrivate}
+              userCount={userCount}
+              key={id}
+              label={label}
+              id={id}
+            />
+          );
         if (index === rooms.length - 1)
-          return <RoomSelectionButton last key={id} label={label} id={id} />;
-        return <RoomSelectionButton key={index} label={label} id={id} />;
+          return (
+            <RoomSelectionButton
+              isPrivate={isPrivate}
+              userCount={userCount}
+              key={id}
+              label={label}
+              id={id}
+            />
+          );
+        return (
+          <RoomSelectionButton
+            isPrivate={isPrivate}
+            userCount={userCount}
+            key={index}
+            label={label}
+            id={id}
+          />
+        );
       })}
     </styled.RoomSelectionContainer>
   );

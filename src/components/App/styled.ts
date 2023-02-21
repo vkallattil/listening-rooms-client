@@ -9,7 +9,7 @@ export const App = styled.div`
 export const NavigationBar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 350px;
   padding: 30px;
   background: #fff1ed;
   box-sizing: border-box;
@@ -27,7 +27,7 @@ export const RoomsTitle = styled.div`
   flex-grow: 1;
   font-size: 36px;
   font-weight: 800;
-  color: #ffabab;
+  color: #FFABAB;
 `;
 
 export const CreateRoomButton = styled.button`
