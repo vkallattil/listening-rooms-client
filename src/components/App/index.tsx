@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
-import style from "./index.css";
+import * as styled from "./styled";
 import { getRooms } from "../../api";
 import { Room } from "../../types";
 import RoomSelection from "../RoomSelection";
@@ -15,21 +15,19 @@ export async function loader() {
 function App() {
   const { rooms } = useLoaderData() as { rooms: Room[] };
   return (
-    <>
-      <div className={style.roomSelection}>
-        <div className={style.rooms}>
-          <div className={style.roomsHeader}>
-            <div className={style.roomsTitle}>ROOMS</div>
-            <button className={style.createRoom}>CREATE</button>
-          </div>
-          <SearchBar />
-          <RoomSelection rooms={rooms} />
-        </div>
-        <div className={style.panel}>
-          <Outlet />
-        </div>
-      </div>
-    </>
+    <styled.App>
+      <styled.NavigationBar>
+        <styled.RoomsHeader>
+          <styled.RoomsTitle>ROOMS</styled.RoomsTitle>
+          <styled.CreateRoomButton>CREATE</styled.CreateRoomButton>
+        </styled.RoomsHeader>
+        <SearchBar />
+        <RoomSelection rooms={rooms} />
+      </styled.NavigationBar>
+      <styled.Panel>
+        <Outlet />
+      </styled.Panel>
+    </styled.App>
   );
 }
 
