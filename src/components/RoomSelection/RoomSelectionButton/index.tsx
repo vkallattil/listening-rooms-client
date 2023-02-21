@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import style from "./index.css";
 
 interface RoomSelectionButtonProps {
   id: string;
@@ -7,15 +8,9 @@ interface RoomSelectionButtonProps {
 }
 
 function RoomSelectionButton({ label, id }: RoomSelectionButtonProps) {
-  function handleClick() {
-    console.log(id);
-  }
-
   return (
-    <Link to={`/rooms/${id}`} className="room-selection-link">
-      <button onClick={handleClick} className="room-selection-button">
-        {label}
-      </button>
+    <Link to={`/rooms/${id}`}>
+      <button className={style.roomSelectionButton}>{label}</button>
     </Link>
   );
 }

@@ -1,35 +1,19 @@
 import React from "react";
-import { Outlet, useLoaderData } from "react-router-dom";
-import "./index.css";
-import RoomSelectionButton from "./RoomSelectionButton";
-import { getRooms } from "../../api";
 import { Room } from "../../types";
+import RoomSelectionButton from "./RoomSelectionButton";
 
-export async function loader() {
-  const response = await getRooms();
-  const rooms = response.data
-  return { rooms };
+interface RoomSelectionProps {
+  rooms: Room[];
 }
 
-function RoomSelection() {
-  const { rooms } = useLoaderData() as { rooms: Room[] };
+function RoomSelection({ rooms }: RoomSelectionProps) {
   return (
     <>
-      <div className="room-selection">
-        <div className="rooms">
-          {rooms.map(({ label, id }) => (
-            <RoomSelectionButton key={id} id={id} label={label} />
-          ))}
-        </div>
-        <div className="panel">
-          <Outlet />
-        </div>
-        <div className="actions">
-          <button>Create Room</button>
-        </div>
-      </div>
+      {rooms.map(({ label, id }) => (
+        <RoomSelectionButton key={id} id={id} label={label} />
+      ))}
     </>
   );
 }
 
-export default RoomSelection;
+export default RoomSelection
