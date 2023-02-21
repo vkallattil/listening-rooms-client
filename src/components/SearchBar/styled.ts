@@ -6,6 +6,8 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 15px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
 `;
 
 export const SearchIconContainer = styled.div<{ focus: boolean }>`
@@ -13,7 +15,7 @@ export const SearchIconContainer = styled.div<{ focus: boolean }>`
   align-items: center;
   padding-left: 13px;
   width: 30px;
-  height: 50px;
+  height: 45px;
   background-color: #ffffff;
   border: 2px solid ${(props) => (props.focus ? "#FFABAB" : "#E4E4E4")};
   transition: 0.4s;
@@ -33,7 +35,7 @@ export const SearchBar = styled.input<{ focus: boolean }>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 50px;
+  height: 45px;
   font-family: "Open Sans", sans-serif;
   padding-left: 10px;
   padding-right: 10px;
