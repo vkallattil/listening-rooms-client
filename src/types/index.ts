@@ -10,6 +10,7 @@ export interface Room {
   label: string;
   isPrivate: boolean;
   users: User[];
+  songUrl: string;
 }
 
 export interface User {

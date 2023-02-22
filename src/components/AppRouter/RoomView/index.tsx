@@ -24,7 +24,7 @@ function RoomView() {
         {room.isPrivate && <styled.LockIcon icon={faLock} />}
       </styled.Header>
       <styled.Body>
-        <Widget />
+        <Widget room={room} />
       </styled.Body>
     </styled.Container>
   );
