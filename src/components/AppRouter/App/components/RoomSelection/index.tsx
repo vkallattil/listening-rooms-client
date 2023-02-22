@@ -1,6 +1,6 @@
 import React from "react";
 import { Room } from "../../../../../types";
-import RoomSelectionButton from "./RoomSelectionButton";
+import RoomSelectionButton from "../RoomSelectionButton";
 import * as styled from "./styled";
 
 interface RoomSelectionProps {
@@ -35,7 +35,7 @@ function RoomSelection({ rooms }: RoomSelectionProps) {
           <RoomSelectionButton
             isPrivate={isPrivate}
             userCount={userCount}
-            key={index}
+            key={id}
             label={label}
             id={id}
           />

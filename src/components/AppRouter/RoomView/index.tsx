@@ -4,6 +4,7 @@ import { useLoaderData, LoaderFunctionArgs } from "react-router-dom";
 import { getRoom } from "../../../api";
 import { Room } from "../../../types";
 import Text from "../../_base/Text";
+import Widget from "./components/Widget";
 import * as styled from "./styled";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -22,7 +23,9 @@ function RoomView() {
         </Text>
         {room.isPrivate && <styled.LockIcon icon={faLock} />}
       </styled.Header>
-      <styled.Body />
+      <styled.Body>
+        <Widget />
+      </styled.Body>
     </styled.Container>
   );
 }
