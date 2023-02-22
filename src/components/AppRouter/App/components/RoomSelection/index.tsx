@@ -1,5 +1,5 @@
 import React from "react";
-import { Room } from "../../types";
+import { Room } from "../../../../../types";
 import RoomSelectionButton from "./RoomSelectionButton";
 import * as styled from "./styled";
 

@@ -1,8 +1,9 @@
+// React app router and directory index for all routed components.
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App, { loader as roomsLoader } from "../App";
-import Room, { loader as roomLoader } from "../RoomView";
-import IndexPage from "../IndexPage";
+import App, { loader as roomsLoader } from "./App";
+import Room, { loader as roomLoader } from "./RoomView";
+import IndexPage from "./IndexPage";
 
 const router = createBrowserRouter([
   {

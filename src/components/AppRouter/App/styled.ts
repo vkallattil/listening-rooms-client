@@ -11,7 +11,8 @@ export const NavigationBar = styled.div`
   flex-direction: column;
   width: 350px;
   padding: 30px;
-  background: #fff1ed;
+  padding-right: 0;
+  background: #ffffff;
   box-sizing: border-box;
 `;
 
@@ -27,25 +28,7 @@ export const RoomsTitle = styled.div`
   flex-grow: 1;
   font-size: 36px;
   font-weight: 800;
-  color: #FFABAB;
-`;
-
-export const CreateRoomButton = styled.button`
-  height: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background: rgb(255, 159, 159);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 159, 159, 1) 0%,
-    rgba(255, 190, 190, 1) 87%
-  );
-  border: none;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 4px;
-  color: #ffffff;
-  border-radius: 6px;
+  color: #ffabab;
 `;
 
 export const Panel = styled.div`

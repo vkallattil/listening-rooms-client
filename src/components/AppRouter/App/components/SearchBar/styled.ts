@@ -1,13 +1,18 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const SearchBarContainer = styled.div`
+export const SearchBarContainer = styled.div<{ hover: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 15px;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${(props) => {
+    return props.hover
+      ? "0px 0px 6px 0px rgb(255, 171, 171)"
+      : "0px 0px 8px 0px rgba(0, 0, 0, 0.08)"
+  }};
   border-radius: 6px;
+  transition: 0.3s;
 `;
 
 export const SearchIconContainer = styled.div<{ focus: boolean }>`
@@ -51,8 +56,8 @@ export const SearchBar = styled.input<{ focus: boolean }>`
     display: none;
   }
   &::selection {
-    background: #FFABAB;
-    color: #FFFFFF;
+    background: #ffabab;
+    color: #ffffff;
   }
   &::placeholder {
     color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
