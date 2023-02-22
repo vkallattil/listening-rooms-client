@@ -1,16 +1,16 @@
 import React from "react";
-import { Room } from "../../../../../types";
+import { RoomLabel } from "../../../../../types";
 import RoomSelectionButton from "../RoomSelectionButton";
 import * as styled from "./styled";
 
 interface RoomSelectionProps {
-  rooms: Room[];
+  roomLabels: RoomLabel[];
 }
 
-function RoomSelection({ rooms }: RoomSelectionProps) {
+function RoomSelection({ roomLabels }: RoomSelectionProps) {
   return (
     <styled.RoomSelectionContainer>
-      {rooms.map(({ label, id, isPrivate, userCount }, index) => {
+      {roomLabels.map(({ label, id, isPrivate, userCount }, index) => {
         if (index === 0)
           return (
             <RoomSelectionButton
@@ -21,7 +21,7 @@ function RoomSelection({ rooms }: RoomSelectionProps) {
               id={id}
             />
           );
-        if (index === rooms.length - 1)
+        if (index === roomLabels.length - 1)
           return (
             <RoomSelectionButton
               isPrivate={isPrivate}

@@ -2,19 +2,19 @@ import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import * as styled from "./styled";
 import { getRooms } from "../../../api";
-import { Room } from "../../../types";
+import { RoomLabel } from "../../../types";
 import RoomSelection from "./components/RoomSelection";
 import SearchBar from "./components/SearchBar";
 import Button from "../../_base/Button";
 
 export async function loader() {
   const response = await getRooms();
-  const rooms = response.data;
-  return { rooms };
+  const roomLabels = response.data;
+  return { roomLabels };
 }
 
 function App() {
-  const { rooms } = useLoaderData() as { rooms: Room[] };
+  const { roomLabels } = useLoaderData() as { roomLabels: RoomLabel[] };
   return (
     <styled.App>
       <styled.NavigationBar>
@@ -23,7 +23,7 @@ function App() {
           <Button>CREATE</Button>
         </styled.RoomsHeader>
         <SearchBar />
-        <RoomSelection rooms={rooms} />
+        <RoomSelection roomLabels={roomLabels} />
       </styled.NavigationBar>
       <styled.Panel>
         <Outlet />
