@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import * as styled from "./styled";
 import { getRooms } from "../../../api";
-import { RoomLabel } from "../../../types";
+import { RoomLabel } from "../../../utils/types";
 import RoomSelection from "./components/RoomSelection";
 import SearchBar from "./components/SearchBar";
 import Button from "../../_base/Button";

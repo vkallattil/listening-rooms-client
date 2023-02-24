@@ -2,7 +2,7 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useLoaderData, LoaderFunctionArgs } from "react-router-dom";
 import { getRoom } from "../../../api";
-import { Room } from "../../../types";
+import { Room } from "../../../utils/types";
 import Text from "../../_base/Text";
 import Widget from "./components/Widget";
 import * as styled from "./styled";

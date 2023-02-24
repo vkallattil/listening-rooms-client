@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Room } from "../../../../../types";
+import { Room } from "../../../../../utils/types";
 import { Widget, SoundObject } from "./types";
 import * as styled from "./styled";
 import "./scripts/soundcloud-widget.js";
