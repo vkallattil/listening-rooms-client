@@ -1,10 +1,10 @@
+import React, { useEffect } from "react";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
-import { useLoaderData, LoaderFunctionArgs } from "react-router-dom";
+import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { getRoom } from "../../../api";
 import { Room } from "../../../utils/types";
 import Text from "../../_base/Text";
-import Widget from "./components/Widget";
+import Widget from "./Widget";
 import * as styled from "./styled";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -15,6 +15,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 function RoomView() {
   const { room } = useLoaderData() as { room: Room };
+
+  useEffect(() => {
+    console.log("roomview re-rendered");
+  });
+
   return (
     <styled.Container>
       <styled.Header>
@@ -24,7 +29,7 @@ function RoomView() {
         {room.isPrivate && <styled.LockIcon icon={faLock} />}
       </styled.Header>
       <styled.Body>
-        <Widget room={room} />
+        <Widget songUrl={room.songUrl} />
       </styled.Body>
     </styled.Container>
   );

@@ -3,8 +3,8 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import * as styled from "./styled";
 import { getRooms } from "../../../api";
 import { RoomLabel } from "../../../utils/types";
-import RoomSelection from "./components/RoomSelection";
-import SearchBar from "./components/SearchBar";
+import RoomSelection from "./RoomSelection";
+import SearchBar from "./SearchBar";
 import Button from "../../_base/Button";
 
 export async function loader() {
