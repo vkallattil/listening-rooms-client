@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App, { loader as roomsLoader } from "./App";
 import RoomView, { loader as roomLoader } from "./RoomView";
 import IndexPage from "./IndexPage";
+import SocketProvider from "../SocketContext";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
 ]);
 
 function AppRouter() {
-  return <RouterProvider router={router} />;
+  return <SocketProvider><RouterProvider router={router} /></SocketProvider>;
 }
 
 export default AppRouter;

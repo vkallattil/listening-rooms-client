@@ -25,7 +25,7 @@ export const Body = styled.div`
   border: 2px solid #e4e4e4;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
-  padding: 15px;
+  padding: 25px;
   overflow-y: scroll;
   overflow-x: hidden;
 `;

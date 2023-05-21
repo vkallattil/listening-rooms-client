@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+import { SocketContext, SocketContextValue } from "../../SocketContext";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { getRoom } from "../../../api";
@@ -15,10 +16,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 function RoomView() {
   const { room } = useLoaderData() as { room: Room };
-
-  useEffect(() => {
-    console.log("roomview re-rendered");
-  });
 
   return (
     <styled.Container>
