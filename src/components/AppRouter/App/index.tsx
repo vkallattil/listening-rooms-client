@@ -8,9 +8,21 @@ import SearchBar from "./SearchBar";
 import Button from "../../_base/Button";
 
 export async function loader() {
-  const response = await getRooms();
-  const roomLabels = response.data;
-  return { roomLabels };
+  // const response = await getRooms();
+  // const roomLabels = response.data;
+  // return { roomLabels };
+  await setTimeout(() => {}, 1000);
+  return {
+    roomLabels: [
+      {
+        id: "1",
+        label: "Room 1",
+        isPrivate: false,
+        songUrl:
+          "https://soundcloud.com/premierhiphopdaily/toomanychances?si=00da0a6bc9354fb0a76b0197d345f813&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
+      },
+    ],
+  };
 }
 
 function App() {

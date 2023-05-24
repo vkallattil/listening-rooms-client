@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { SocketContext, SocketContextValue } from "../../SocketContext";
+import React from "react";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { getRoom } from "../../../api";
@@ -9,9 +8,19 @@ import Widget from "./Widget";
 import * as styled from "./styled";
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const response = await getRoom(params.roomId);
-  const room = response.data;
-  return { room };
+  // const response = await getRoom(params.roomId);
+  // const room = response.data;
+  // return { room };
+  await setTimeout(() => {}, 1000);
+  return {
+    room: {
+      id: "1",
+      label: "Room 1",
+      isPrivate: false,
+      songUrl: "https://soundcloud.com/premierhiphopdaily/toomanychances?si=00da0a6bc9354fb0a76b0197d345f813&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+    }
+  }
+
 }
 
 function RoomView() {
