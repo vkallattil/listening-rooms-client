@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+`
+
 export const ProgressBar = styled.div`
   width: 100%;
   height: 6px;
-  margin-bottom: 25px;
   border-radius: 3px;
   background: #ffebe7;
   position: relative;

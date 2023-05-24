@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const IFrame = styled.iframe`
@@ -6,12 +7,10 @@ export const IFrame = styled.iframe`
 `;
 
 export const WidgetContainer = styled.div`
-  height: 100%;
-  max-height: 300px;
   display: flex;
   flex-direction: column;
   background: #ffabab;
-  padding: 25px;
+  padding: 25px 25px 15px 25px;
   border-radius: 16px;
   color: #ffffff;
 `;
@@ -24,9 +23,15 @@ export const WidgetBanner = styled.div`
   overflow: hidden;
 `
 
+export const PlaybackContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 export const DefaultAlbumCover = styled.div`
-  min-width: 150px;
-  min-height: 150px;
+  min-width: 125px;
+  min-height: 125px;
   background: #ffffff;
   border-radius: 16px;
   margin-right: 25px;
@@ -55,4 +60,34 @@ export const ArtistName = styled.span`
   background: white;
   color: #ffabab;
   border-radius: 2px;
+`
+
+export const Icon = styled(FontAwesomeIcon)<{ type: string }>`
+  font-size: ${({ type }) => {
+    switch (type) {
+      case "small":
+        return "32px";
+      case "medium":
+        return "42px";
+      case "large":
+        return "48px";
+      default:
+        return "32px";
+    }
+  }};
+  margin-right: 10px;
+  color: #ffffff;
+`
+
+export const PlaybackButton = styled.button`
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > svg {
+    margin: 0;
+  }
 `

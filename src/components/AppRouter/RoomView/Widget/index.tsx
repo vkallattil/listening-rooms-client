@@ -3,7 +3,14 @@ import { SocketContext, SocketContextValue } from "../../../SocketContext";
 import * as styled from "./styled";
 import { SoundObject, Widget } from "../../../../utils/types";
 import ProgressBar from "../ProgressBar";
-import { faUsers, faLock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPause,
+  faPlay,
+  faRandom,
+  faBackward,
+  faForward,
+  faRepeat,
+} from "@fortawesome/free-solid-svg-icons";
 
 export interface WidgetProps {
   songUrl: string;
@@ -17,7 +24,8 @@ function Widget({ songUrl }: WidgetProps) {
   ) as SocketContextValue;
 
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
-  const [progress, setProgress] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   // Initialize SC widget when iframe renders.
   useEffect(() => {
@@ -39,8 +47,15 @@ function Widget({ songUrl }: WidgetProps) {
           },
         });
         // TODO: Figure out how to get the widget to send play events without infinite loop.
-        // widget.bind(SC.Widget.Events.PLAY, () => {});
-        // widget.bind(SC.Widget.Events.PAUSE, () => {});
+        widget.bind(SC.Widget.Events.PLAY, () => {
+          setIsPlaying(true);
+        });
+        widget.bind(SC.Widget.Events.PAUSE, () => {
+          setIsPlaying(false);
+        });
+        widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
+          setCurrentPosition(e.currentPosition);
+        });
       });
     }
 
@@ -52,6 +67,11 @@ function Widget({ songUrl }: WidgetProps) {
       }
     };
   }, [widget, songUrl]);
+
+  const seek = (position: number) => {
+    widget.seekTo(position);
+    setCurrentPosition(position);
+  };
 
   return (
     <>
@@ -72,23 +92,44 @@ function Widget({ songUrl }: WidgetProps) {
               <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
             </styled.SongInformation>
           </styled.WidgetBanner>
-          <ProgressBar progress={progress} setProgress={setProgress} />
-          <button
-            onClick={() => {
-              widget.play();
-              setSendPlayback("PLAY");
-            }}
-          >
-            Play
-          </button>
-          <button
-            onClick={() => {
-              widget.pause();
-              setSendPlayback("PAUSE");
-            }}
-          >
-            Pause
-          </button>
+          <ProgressBar
+            currentPosition={currentPosition}
+            seek={seek}
+            duration={currentSound.duration}
+          />
+          <styled.PlaybackContainer>
+            <styled.PlaybackButton>
+              <styled.Icon type="small" icon={faRandom} />
+            </styled.PlaybackButton>
+            <styled.PlaybackButton>
+              <styled.Icon type="medium" icon={faBackward} />
+            </styled.PlaybackButton>
+            {isPlaying ? (
+              <styled.PlaybackButton
+                onClick={() => {
+                  widget.pause();
+                  setSendPlayback("PAUSE");
+                }}
+              >
+                <styled.Icon type="large" icon={faPause} />
+              </styled.PlaybackButton>
+            ) : (
+              <styled.PlaybackButton
+                onClick={() => {
+                  widget.play();
+                  setSendPlayback("PLAY");
+                }}
+              >
+                <styled.Icon type="large" icon={faPlay} />
+              </styled.PlaybackButton>
+            )}
+            <styled.PlaybackButton>
+              <styled.Icon type="medium" icon={faForward} />
+            </styled.PlaybackButton>
+            <styled.PlaybackButton>
+              <styled.Icon type="small" icon={faRepeat} />
+            </styled.PlaybackButton>
+          </styled.PlaybackContainer>
         </styled.WidgetContainer>
       )}
     </>
