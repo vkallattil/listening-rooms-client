@@ -28,7 +28,8 @@ export const RoomsTitle = styled.div`
   flex-grow: 1;
   font-size: 36px;
   font-weight: 800;
-  color: #ffabab;
+  color: #FFA08B;
+  margin-right: 15px;
 `;
 
 export const Panel = styled.div`

@@ -22,7 +22,7 @@ export const SearchIconContainer = styled.div<{ focus: boolean }>`
   width: 30px;
   height: 45px;
   background-color: #ffffff;
-  border: 2px solid ${(props) => (props.focus ? "#FFABAB" : "#E4E4E4")};
+  border: 2px solid ${(props) => (props.focus ? "#FFA08B" : "#E4E4E4")};
   transition: 0.2s;
   border-radius: 6px 0px 0px 6px;
   box-sizing: border-box;
@@ -32,7 +32,7 @@ export const SearchIconContainer = styled.div<{ focus: boolean }>`
 export const SearchIcon = styled(FontAwesomeIcon)<{ focus: boolean }>`
   width: 14px;
   height: 14px;
-  color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
+  color: ${(props) => (props.focus ? "#FFA08B" : "#747474")};
   transition: 0.2s;
 `;
 
@@ -44,23 +44,23 @@ export const SearchBar = styled.input<{ focus: boolean }>`
   font-family: "Open Sans", sans-serif;
   padding-left: 10px;
   padding-right: 10px;
-  border: 2px solid ${(props) => (props.focus ? "#FFABAB" : "#E4E4E4")};
+  border: 2px solid ${(props) => (props.focus ? "#FFA08B" : "#E4E4E4")};
   border-left: none;
   border-radius: 0px 6px 6px 0px;
   outline: none;
   font-size: 16px;
   font-weight: 600;
-  color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
+  color: ${(props) => (props.focus ? "#FFA08B" : "#747474")};
   transition: 0.2s;
   &::-webkit-search-cancel-button {
     display: none;
   }
   &::selection {
-    background: #ffabab;
+    background: #FFA08B;
     color: #ffffff;
   }
   &::placeholder {
-    color: ${(props) => (props.focus ? "#FFABAB" : "#747474")};
+    color: ${(props) => (props.focus ? "#FFA08B" : "#747474")};
     transition: 0.2s;
   }
 `;

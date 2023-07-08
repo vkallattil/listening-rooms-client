@@ -17,7 +17,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       id: "1",
       label: "Room 1",
       isPrivate: false,
-      songUrl: "https://soundcloud.com/premierhiphopdaily/toomanychances?si=00da0a6bc9354fb0a76b0197d345f813&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+      songUrl: "https://soundcloud.com/tooley-82425864/houdini-travis-scott"
     }
   }
 
@@ -35,7 +35,10 @@ function RoomView() {
         {room.isPrivate && <styled.LockIcon icon={faLock} />}
       </styled.Header>
       <styled.Body>
+        <styled.PanelOne>
         <Widget songUrl={room.songUrl} />
+        </styled.PanelOne>
+        {/* <styled.PanelTwo /> */}
       </styled.Body>
     </styled.Container>
   );

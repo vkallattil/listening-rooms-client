@@ -9,25 +9,28 @@ export const IFrame = styled.iframe`
 export const WidgetContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: #ffabab;
-  padding: 25px 25px 15px 25px;
+  background: #ffa08b;
+  padding: 25px 45px 15px 25px;
   border-radius: 16px;
   color: #ffffff;
+  align-self: flex-start;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 export const WidgetBanner = styled.div`
   display: flex;
   max-width: 100%;
-  max-height: 150px;
+  max-height: 125px;
   margin-bottom: 25px;
   overflow: hidden;
-`
+`;
 
 export const PlaybackContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const DefaultAlbumCover = styled.div`
   min-width: 125px;
@@ -35,13 +38,14 @@ export const DefaultAlbumCover = styled.div`
   background: #ffffff;
   border-radius: 16px;
   margin-right: 25px;
-`
+`;
 
 export const SongInformation = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-`
+  overflow: ellipsis;
+`;
 
 export const AlbumTitle = styled.div`
   font-size: 32px;
@@ -49,7 +53,7 @@ export const AlbumTitle = styled.div`
   margin-bottom: 10px;
   flex-grow: 1;
   text-overflow: ellipsis;
-`
+`;
 
 export const ArtistName = styled.span`
   font-size: 16px;
@@ -58,9 +62,9 @@ export const ArtistName = styled.span`
   padding: 2px 5px;
   text-transform: uppercase;
   background: white;
-  color: #ffabab;
+  color: #ffa08b;
   border-radius: 2px;
-`
+`;
 
 export const Icon = styled(FontAwesomeIcon)<{ type: string }>`
   font-size: ${({ type }) => {
@@ -77,7 +81,7 @@ export const Icon = styled(FontAwesomeIcon)<{ type: string }>`
   }};
   margin-right: 10px;
   color: #ffffff;
-`
+`;
 
 export const PlaybackButton = styled.button`
   background: none;
@@ -90,4 +94,4 @@ export const PlaybackButton = styled.button`
   & > svg {
     margin: 0;
   }
-`
+`;

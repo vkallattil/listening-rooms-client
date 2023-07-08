@@ -18,8 +18,6 @@ export async function loader() {
         id: "1",
         label: "Room 1",
         isPrivate: false,
-        songUrl:
-          "https://soundcloud.com/premierhiphopdaily/toomanychances?si=00da0a6bc9354fb0a76b0197d345f813&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
       },
     ],
   };

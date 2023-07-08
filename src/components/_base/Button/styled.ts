@@ -7,8 +7,8 @@ export const Button = styled.button`
   background: rgb(255, 159, 159);
   background: linear-gradient(
     90deg,
-    rgba(255, 159, 159, 1) 0%,
-    rgba(255, 190, 190, 1) 87%
+    rgba(255, 160, 139, 1) 0%,
+    rgba(255, 190, 176, 1) 87%
   );
   border: none;
   font-weight: 800;
@@ -18,10 +18,10 @@ export const Button = styled.button`
   border-radius: 6px;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
   &:hover {
-    box-shadow: 0px 0px 8px 0px rgb(255, 171, 171);
+    box-shadow: 0px 0px 8px 0px rgba(255, 190, 176, 1);
     transition: 0.3s;
   }
   &:focus:active {
-    box-shadow: 0px 0px 12px 2px rgb(255, 171, 171);
+    box-shadow: 0px 0px 12px 2px rgba(255, 190, 176, 1);
   }
 `;

@@ -21,11 +21,26 @@ export const LockIcon = styled(FontAwesomeIcon)`
 
 export const Body = styled.div`
   flex-grow: 1;
+  display: flex;
   background-color: #ffffff;
   border: 2px solid #e4e4e4;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
-  padding: 25px;
   overflow-y: scroll;
   overflow-x: hidden;
+`;
+
+export const PanelOne = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-right: 2px solid #e4e4e4;
+  padding: 15px;
+`;
+
+export const PanelTwo = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 250px;
 `;

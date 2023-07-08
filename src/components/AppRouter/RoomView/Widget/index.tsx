@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useContext, useState } from "react";
 import { SocketContext, SocketContextValue } from "../../../SocketContext";
 import * as styled from "./styled";
 import { SoundObject, Widget } from "../../../../utils/types";
-import ProgressBar from "../ProgressBar";
 import {
   faPause,
   faPlay,
@@ -24,7 +23,6 @@ function Widget({ songUrl }: WidgetProps) {
   ) as SocketContextValue;
 
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
-  const [currentPosition, setCurrentPosition] = useState(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   // Initialize SC widget when iframe renders.
@@ -53,25 +51,18 @@ function Widget({ songUrl }: WidgetProps) {
         widget.bind(SC.Widget.Events.PAUSE, () => {
           setIsPlaying(false);
         });
-        widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
-          setCurrentPosition(e.currentPosition);
-        });
       });
     }
 
     return () => {
       if (widget) {
         widget.unbind(SC.Widget.Events.READY);
-        // widget.unbind(SC.Widget.Events.PLAY);
-        // widget.unbind(SC.Widget.Events.PAUSE);
+        widget.unbind(SC.Widget.Events.PLAY);
+        widget.unbind(SC.Widget.Events.PAUSE);
+        widget.unbind(SC.Widget.Events.PLAY_PROGRESS);
       }
     };
   }, [widget, songUrl]);
-
-  const seek = (position: number) => {
-    widget.seekTo(position);
-    setCurrentPosition(position);
-  };
 
   return (
     <>
@@ -92,11 +83,6 @@ function Widget({ songUrl }: WidgetProps) {
               <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
             </styled.SongInformation>
           </styled.WidgetBanner>
-          <ProgressBar
-            currentPosition={currentPosition}
-            seek={seek}
-            duration={currentSound.duration}
-          />
           <styled.PlaybackContainer>
             <styled.PlaybackButton>
               <styled.Icon type="small" icon={faRandom} />

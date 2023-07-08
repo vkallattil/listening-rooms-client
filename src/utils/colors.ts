@@ -1,1 +1,1 @@
-export const peachPrimary = "#FFABAB";
+export const peachPrimary = "#FFA08B";
