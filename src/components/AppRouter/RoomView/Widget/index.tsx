@@ -25,6 +25,7 @@ function Widget({ songUrl }: WidgetProps) {
 
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [songPosition, setSongPosition] = useState<number>(0)
 
   // Initialize SC widget when iframe renders.
   useEffect(() => {
@@ -48,9 +49,14 @@ function Widget({ songUrl }: WidgetProps) {
         // TODO: Figure out how to get the widget to send play events without infinite loop.
         widget.bind(SC.Widget.Events.PLAY, () => {
           setIsPlaying(true);
+          console.log("PLAY")
         });
         widget.bind(SC.Widget.Events.PAUSE, () => {
           setIsPlaying(false);
+          console.log("PAUSE")
+        });
+        widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
+          setSongPosition(e.currentPosition);
         });
       });
     }
@@ -84,7 +90,7 @@ function Widget({ songUrl }: WidgetProps) {
               <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
             </styled.SongInformation>
           </styled.WidgetBanner>
-          <ProgressBar />
+          <ProgressBar duration={currentSound.duration} songPosition={songPosition} />
           <styled.PlaybackContainer>
             <styled.PlaybackButton>
               <styled.Icon type="small" icon={faRandom} />
