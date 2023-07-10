@@ -8,19 +8,9 @@ import Widget from "./Widget";
 import * as styled from "./styled";
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  // const response = await getRoom(params.roomId);
-  // const room = response.data;
-  // return { room };
-  await setTimeout(() => {}, 1000);
-  return {
-    room: {
-      id: "1",
-      label: "Room 1",
-      isPrivate: false,
-      songUrl: "https://soundcloud.com/tooley-82425864/houdini-travis-scott"
-    }
-  }
-
+  const response = await getRoom(params.roomId);
+  const room = response.data;
+  return { room };
 }
 
 function RoomView() {

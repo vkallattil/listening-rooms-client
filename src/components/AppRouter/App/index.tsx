@@ -8,19 +8,9 @@ import SearchBar from "./SearchBar";
 import Button from "../../_base/Button";
 
 export async function loader() {
-  // const response = await getRooms();
-  // const roomLabels = response.data;
-  // return { roomLabels };
-  await setTimeout(() => {}, 1000);
-  return {
-    roomLabels: [
-      {
-        id: "1",
-        label: "Room 1",
-        isPrivate: false,
-      },
-    ],
-  };
+  const response = await getRooms();
+  const roomLabels = response.data;
+  return { roomLabels };
 }
 
 function App() {
