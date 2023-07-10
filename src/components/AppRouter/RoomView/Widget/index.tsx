@@ -10,6 +10,7 @@ import {
   faForward,
   faRepeat,
 } from "@fortawesome/free-solid-svg-icons";
+import ProgressBar from "../ProgressBar";
 
 export interface WidgetProps {
   songUrl: string;
@@ -83,6 +84,7 @@ function Widget({ songUrl }: WidgetProps) {
               <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
             </styled.SongInformation>
           </styled.WidgetBanner>
+          <ProgressBar />
           <styled.PlaybackContainer>
             <styled.PlaybackButton>
               <styled.Icon type="small" icon={faRandom} />
