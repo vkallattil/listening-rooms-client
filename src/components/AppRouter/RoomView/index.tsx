@@ -20,7 +20,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
       songUrl: "https://soundcloud.com/tooley-82425864/houdini-travis-scott"
     }
   }
-
 }
 
 function RoomView() {
