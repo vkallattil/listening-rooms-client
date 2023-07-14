@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import * as styled from "./styled";
 import { useRooms } from "../../RoomsProvider";
@@ -7,22 +7,27 @@ import SearchBar from "./SearchBar";
 import Button from "../../_base/Button";
 
 function App() {
-  const { rooms, loading } = useRooms();
-
-  useEffect(() => {
-    console.log(loading);
-    console.log(rooms);
-  });
+  const { rooms, loading, createRoom } = useRooms();
 
   return (
     <styled.App>
       <styled.NavigationBar>
         <styled.RoomsHeader>
           <styled.RoomsTitle>ROOMS</styled.RoomsTitle>
-          <Button>CREATE</Button>
+          <Button
+            onClick={() => {
+              createRoom({
+                label: "Roommmiee",
+                id: "ljfasdfasd",
+                songUrl: "",
+              });
+            }}
+          >
+            CREATE
+          </Button>
         </styled.RoomsHeader>
         <SearchBar />
-        {!loading && <RoomSelection roomLabels={rooms} />}
+        <RoomSelection roomLabels={rooms} loading={loading} />
       </styled.NavigationBar>
       <styled.Panel>
         <Outlet />

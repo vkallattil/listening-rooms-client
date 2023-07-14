@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Room } from "../utils/types";
 
 const api = axios.create({
   baseURL: "http://localhost:8081",
@@ -10,4 +11,8 @@ export function getRooms() {
 
 export function getRoom(id: string) {
   return api.get(`/rooms/${id}`);
+}
+
+export function postRoom(room: Room) {
+  return api.post("/rooms", room)
 }

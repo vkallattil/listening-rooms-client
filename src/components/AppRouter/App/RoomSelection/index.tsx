@@ -5,9 +5,11 @@ import * as styled from "./styled";
 
 interface RoomSelectionProps {
   roomLabels: RoomLabel[];
+  loading: boolean;
 }
 
-function RoomSelection({ roomLabels }: RoomSelectionProps) {
+function RoomSelection({ roomLabels, loading }: RoomSelectionProps) {
+  if (loading) return <div>Loading...</div>
   return (
     <styled.RoomSelectionContainer>
       {roomLabels.map(({ label, id }, index) => {
