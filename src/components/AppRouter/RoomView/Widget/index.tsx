@@ -63,10 +63,10 @@ function Widget({ songUrl }: WidgetProps) {
 
     return () => {
       if (widget) {
-        widget.unbind(SC.Widget.Events.READY);
-        widget.unbind(SC.Widget.Events.PLAY);
-        widget.unbind(SC.Widget.Events.PAUSE);
-        widget.unbind(SC.Widget.Events.PLAY_PROGRESS);
+        // widget.unbind(SC.Widget.Events.READY);
+        // widget.unbind(SC.Widget.Events.PLAY);
+        // widget.unbind(SC.Widget.Events.PAUSE);
+        // widget.unbind(SC.Widget.Events.PLAY_PROGRESS);
       }
     };
   }, [widget, songUrl]);

@@ -14,5 +14,9 @@ export function getRoom(id: string) {
 }
 
 export function postRoom(room: Room) {
-  return api.post("/rooms", room)
+  return api.post("/rooms", room);
+}
+
+export function deleteRoom(id: string) {
+  return api.delete(`/rooms/${id}`);
 }

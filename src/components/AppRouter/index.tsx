@@ -6,6 +6,7 @@ import RoomView from "./RoomView";
 import IndexPage from "./IndexPage";
 import SocketProvider from "../SocketContext";
 import RoomsProvider from "../RoomsProvider";
+import CreateRoom from "./CreateRoom";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/rooms/:roomId",
         element: <RoomView />,
+      },
+      {
+        path: "/create-room",
+        element: <CreateRoom />,
       },
     ],
   },

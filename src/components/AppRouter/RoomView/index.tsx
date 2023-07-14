@@ -1,23 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getRoom } from "../../../api";
 import Text from "../../_base/Text";
 import Widget from "./Widget";
 import * as styled from "./styled";
+import { Container, Header, Body } from "../../_base/ViewTemplate";
+import { useNavigate, useParams } from "react-router-dom";
+import { useRooms } from "../../RoomsProvider";
 
 function RoomView() {
+  const { roomId } = useParams();
+  const { removeRoom } = useRooms();
+  const navigate = useNavigate();
+
+  const [room, setRoom] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!loading) {
+      setLoading(true);
+    }
+
+    getRoom(roomId).then((response) => {
+      setRoom(response.data);
+      setLoading(false);
+    });
+  }, [roomId]);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
-    <styled.Container>
-      <styled.Header>
+    <Container>
+      <Header>
         <Text type="h1" margin="0px 0px 15px 0px">
-          Room 1
+          {room.label}
         </Text>
-      </styled.Header>
-      <styled.Body>
+        <button
+          onClick={() => {
+            removeRoom(roomId).then(() => {
+              navigate("/");
+            });
+          }}
+        >
+          Delete
+        </button>
+      </Header>
+      <Body>
         <styled.PanelOne>
-          <Widget songUrl="https://soundcloud.com/beaubouthillier-1/mos-def-auditorium-2" />
+          <Widget songUrl={room.songUrl} />
         </styled.PanelOne>
-        {/* <styled.PanelTwo /> */}
-      </styled.Body>
-    </styled.Container>
+        <styled.PanelTwo />
+      </Body>
+    </Container>
   );
 }
 

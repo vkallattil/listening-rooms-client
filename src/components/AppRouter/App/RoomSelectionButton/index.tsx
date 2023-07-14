@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { SocketContext, SocketContextValue } from "../../../SocketContext";
 import * as styled from "./styled";
-import { faUsers, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 
 interface RoomSelectionButtonProps {
