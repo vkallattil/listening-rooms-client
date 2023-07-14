@@ -3,10 +3,11 @@ import * as styled from "./styled";
 
 interface ButtonProps {
   children: React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function Button({ children }: ButtonProps) {
-  return <styled.Button>{children}</styled.Button>;
+function Button({ children, onClick }: ButtonProps) {
+  return <styled.Button onClick={onClick}>{children}</styled.Button>;
 }
 
 export default Button;

@@ -10,12 +10,10 @@ interface RoomSelectionProps {
 function RoomSelection({ roomLabels }: RoomSelectionProps) {
   return (
     <styled.RoomSelectionContainer>
-      {roomLabels.map(({ label, id, isPrivate, userCount }, index) => {
+      {roomLabels.map(({ label, id }, index) => {
         if (index === 0)
           return (
             <RoomSelectionButton
-              isPrivate={isPrivate}
-              userCount={userCount}
               key={id}
               label={label}
               id={id}
@@ -24,8 +22,6 @@ function RoomSelection({ roomLabels }: RoomSelectionProps) {
         if (index === roomLabels.length - 1)
           return (
             <RoomSelectionButton
-              isPrivate={isPrivate}
-              userCount={userCount}
               key={id}
               label={label}
               id={id}
@@ -33,8 +29,6 @@ function RoomSelection({ roomLabels }: RoomSelectionProps) {
           );
         return (
           <RoomSelectionButton
-            isPrivate={isPrivate}
-            userCount={userCount}
             key={id}
             label={label}
             id={id}

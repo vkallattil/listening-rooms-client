@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Link = styled(NavLink)<{ isActive: boolean }>`
   text-decoration: none;
@@ -22,22 +21,7 @@ export const Link = styled(NavLink)<{ isActive: boolean }>`
   }
 `;
 
-export const Icon = styled(FontAwesomeIcon)`
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
-`;
-
-export const LockIcon = styled(FontAwesomeIcon)<{ isPrivate?: boolean }>`
-  width: 12px;
-  height: 12px;
-  margin-right: 10px;
-  visibility: ${(props) => (props.isPrivate ? "visible" : "hidden")};
-`;
-
 export const Label = styled.div`
   flex-grow: 1;
   margin-right: 10px;
 `;
-
-export const UserCount = styled.div``;

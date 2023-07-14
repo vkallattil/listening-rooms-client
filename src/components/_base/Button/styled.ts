@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const Button = styled.button<{
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}>`
   height: 36px;
   padding-left: 10px;
   padding-right: 10px;
