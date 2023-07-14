@@ -5,6 +5,7 @@ import App from "./App";
 import RoomView from "./RoomView";
 import IndexPage from "./IndexPage";
 import SocketProvider from "../SocketContext";
+import RoomsProvider from "../RoomsProvider";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,13 @@ const router = createBrowserRouter([
 ]);
 
 function AppRouter() {
-  return <SocketProvider><RouterProvider router={router} /></SocketProvider>;
+  return (
+    <SocketProvider>
+      <RoomsProvider>
+        <RouterProvider router={router} />
+      </RoomsProvider>
+    </SocketProvider>
+  );
 }
 
 export default AppRouter;

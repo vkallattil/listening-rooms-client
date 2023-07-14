@@ -15,7 +15,7 @@ function ProgressBar({ duration, songPosition }: ProgressBarProps) {
 
   useEffect(() => {
     inputRef.current.addEventListener("change", function () {
-      widget.seekTo(inputRef.current.value)
+      widget.seekTo(inputRef.current.value);
       setIsDragging(false);
     });
 
