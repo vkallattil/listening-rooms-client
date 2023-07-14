@@ -1,26 +1,28 @@
-import React from "react";
-import { Outlet, useLoaderData } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import * as styled from "./styled";
-import { getRooms } from "../../../api";
-import { RoomLabel } from "../../../utils/types";
+import { useRooms } from "../../RoomsProvider";
 import RoomSelection from "./RoomSelection";
 import SearchBar from "./SearchBar";
 import Button from "../../_base/Button";
 
 function App() {
-  const handleCreate = () => {
-    console.log("create")
-  }
+  const { rooms, loading } = useRooms();
+
+  useEffect(() => {
+    console.log(loading);
+    console.log(rooms);
+  });
 
   return (
     <styled.App>
       <styled.NavigationBar>
         <styled.RoomsHeader>
           <styled.RoomsTitle>ROOMS</styled.RoomsTitle>
-          <Button onClick={handleCreate}>CREATE</Button>
+          <Button>CREATE</Button>
         </styled.RoomsHeader>
         <SearchBar />
-        <RoomSelection roomLabels={[]} />
+        {!loading && <RoomSelection roomLabels={rooms} />}
       </styled.NavigationBar>
       <styled.Panel>
         <Outlet />
