@@ -1,22 +1,34 @@
 import styled from "styled-components";
+import { Paragraph as ImportParagraph } from "../styled";
+
+export const TimeMarker = styled(ImportParagraph)`
+  color: #ffffff;
+`;
+
+export const ProgressBarWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 15px;
+`;
 
 export const Input = styled.input`
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 100%;
-  margin-bottom: 15px;
+  flex-grow: 1;
+  margin: 0 15px;
 
   // Track styles
   &::-webkit-slider-runnable-track {
-    background: #ffebe7;
-    height: 8px;
+    background: #ffffff;
+    height: 5px;
     border-radius: 8px;
   }
   &::moz-range-track {
-    background: #ffebe7;
-    height: 8px;
+    background: #ffffff;
+    height: 5px;
     border-radius: 8px;
   }
 
@@ -28,7 +40,7 @@ export const Input = styled.input`
     background-color: #ffa08b;
     border-radius: 22px;
     border: 5px solid #ffffff;
-    margin-top: -7px;
+    margin-top: -8px;
     transition: 0.2s;
     cursor: grab;
   }

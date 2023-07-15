@@ -10,7 +10,7 @@ export const WidgetContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #ffa08b;
-  padding: 25px 45px 15px 25px;
+  padding: 25px 25px 15px 25px;
   border-radius: 16px;
   color: #ffffff;
   align-self: flex-start;

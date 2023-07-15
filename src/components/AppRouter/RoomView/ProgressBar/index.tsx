@@ -30,14 +30,27 @@ function ProgressBar({ duration, songPosition }: ProgressBarProps) {
     }
   });
 
+  function formatTime(milliseconds: number): string {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+  
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${minutes}:${formattedSeconds}`;
+  }  
+
   return (
-    <styled.Input
-      ref={inputRef}
-      type="range"
-      min="0"
-      max={`${duration}`}
-      id="myRange"
-    />
+    <styled.ProgressBarWrapper>
+      <styled.TimeMarker>{formatTime(songPosition)}</styled.TimeMarker>
+      <styled.Input
+        ref={inputRef}
+        type="range"
+        min="0"
+        max={`${duration}`}
+        id="myRange"
+      />
+      <styled.TimeMarker>{formatTime(duration)}</styled.TimeMarker>
+    </styled.ProgressBarWrapper>
   );
 }
 
