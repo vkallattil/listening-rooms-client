@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Header1 } from "../../_base/Text/styled";
 
 export const PanelOne = styled.div`
   display: flex;
@@ -14,3 +15,19 @@ export const PanelTwo = styled.div`
   width: 30%;
   min-width: 250px;
 `;
+
+export const Text = styled(Header1)`
+  flex-grow: 1;
+  margin: 0px 0px 15px 0px
+`
+
+export const SettingsButton = styled.button`
+  background-color: #ffffff;
+  color: #747474;
+  border: none;
+  border-radius: 5px;
+  margin: 0px 0px 15px 0px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 24px;
+`

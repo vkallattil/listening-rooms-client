@@ -1,4 +1,5 @@
 // React app router and directory index for all routed components.
+
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
@@ -6,7 +7,7 @@ import RoomView from "./RoomView";
 import IndexPage from "./IndexPage";
 import SocketProvider from "../SocketContext";
 import RoomsProvider from "../RoomsProvider";
-import CreateRoom from "./CreateRoom";
+import CreateEditRoom from "./CreateEditRoom";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/create-room",
-        element: <CreateRoom />,
+        element: <CreateEditRoom />,
       },
+      {
+        path: "/edit-room/:roomId",
+        element: <CreateEditRoom />,
+      }
     ],
   },
 ]);

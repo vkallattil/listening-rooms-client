@@ -20,3 +20,7 @@ export function postRoom(room: Room) {
 export function deleteRoom(id: string) {
   return api.delete(`/rooms/${id}`);
 }
+
+export function putRoom(room: Room) {
+  return api.put(`/rooms/${room.id}`, room);
+}

@@ -5,7 +5,7 @@ import Input from "../../_base/Input";
 import Button from "../../_base/Button";
 import { Container, Body, Header } from "../../_base/ViewTemplate";
 import { useRooms } from "../../RoomsProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SecondaryButton } from "../../_base/Button";
 
 function CreateRoom() {
