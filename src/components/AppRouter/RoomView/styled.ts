@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { Header1 } from "../../_base/Text/styled";
+import {
+  Header1 as ImportHeader1,
+  Paragraph as ImportParagraph,
+} from "../../_base/Text/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const PanelOne = styled.div`
   display: flex;
@@ -16,10 +20,25 @@ export const PanelTwo = styled.div`
   min-width: 250px;
 `;
 
-export const Text = styled(Header1)`
+export const TemporaryPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 250px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MessagesIcon = styled(FontAwesomeIcon)`
+  font-size: 72px;
+  color: #ffebe7;
+  margin: 0px 0px 15px 0px;
+`;
+
+export const Header1 = styled(ImportHeader1)`
   flex-grow: 1;
-  margin: 0px 0px 15px 0px
-`
+  margin: 0px 0px 15px 0px;
+`;
 
 export const SettingsButton = styled.button`
   background-color: #ffffff;
@@ -30,4 +49,9 @@ export const SettingsButton = styled.button`
   cursor: pointer;
   transition: 0.2s;
   font-size: 24px;
-`
+`;
+
+export const Paragraph = styled(ImportParagraph)`
+  text-align: center;
+  color: #a4a4a4;
+`;

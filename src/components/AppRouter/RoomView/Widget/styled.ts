@@ -16,6 +16,7 @@ export const WidgetContainer = styled.div`
   align-self: flex-start;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
 `;
 
 export const WidgetBanner = styled.div`
@@ -50,19 +51,15 @@ export const SongInformation = styled.div`
 export const AlbumTitle = styled.div`
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 10px;
-  flex-grow: 1;
+  margin-top: 15px;
   text-overflow: ellipsis;
 `;
 
 export const ArtistName = styled.span`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   width: fit-content;
-  padding: 2px 5px;
   text-transform: uppercase;
-  background: white;
-  color: #ffa08b;
   border-radius: 2px;
 `;
 

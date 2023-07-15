@@ -25,7 +25,7 @@ function Widget({ songUrl }: WidgetProps) {
 
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [songPosition, setSongPosition] = useState<number>(0)
+  const [songPosition, setSongPosition] = useState<number>(0);
 
   // Initialize SC widget when iframe renders.
   useEffect(() => {
@@ -49,11 +49,11 @@ function Widget({ songUrl }: WidgetProps) {
         // TODO: Figure out how to get the widget to send play events without infinite loop.
         widget.bind(SC.Widget.Events.PLAY, () => {
           setIsPlaying(true);
-          console.log("PLAY")
+          console.log("PLAY");
         });
         widget.bind(SC.Widget.Events.PAUSE, () => {
           setIsPlaying(false);
-          console.log("PAUSE")
+          console.log("PAUSE");
         });
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
           setSongPosition(e.currentPosition);
@@ -84,13 +84,18 @@ function Widget({ songUrl }: WidgetProps) {
           <styled.WidgetBanner>
             <styled.DefaultAlbumCover />
             <styled.SongInformation>
+              <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
               <styled.ArtistName>
                 {currentSound.user.username}
               </styled.ArtistName>
-              <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
             </styled.SongInformation>
           </styled.WidgetBanner>
-          <ProgressBar duration={currentSound.duration} songPosition={songPosition} />
+
+          <ProgressBar
+            duration={currentSound.duration}
+            songPosition={songPosition}
+          />
+
           <styled.PlaybackContainer>
             <styled.PlaybackButton>
               <styled.Icon type="small" icon={faRandom} />
@@ -98,6 +103,7 @@ function Widget({ songUrl }: WidgetProps) {
             <styled.PlaybackButton>
               <styled.Icon type="medium" icon={faBackward} />
             </styled.PlaybackButton>
+
             {isPlaying ? (
               <styled.PlaybackButton
                 onClick={() => {
@@ -117,6 +123,7 @@ function Widget({ songUrl }: WidgetProps) {
                 <styled.Icon type="large" icon={faPlay} />
               </styled.PlaybackButton>
             )}
+
             <styled.PlaybackButton>
               <styled.Icon type="medium" icon={faForward} />
             </styled.PlaybackButton>

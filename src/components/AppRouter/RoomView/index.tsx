@@ -6,8 +6,8 @@ import * as styled from "./styled";
 import { Container, Header, Body } from "../../_base/ViewTemplate";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRooms } from "../../RoomsProvider";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Text from "../../_base/Text";
+import { faEdit, faMessage, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function RoomView() {
   const { roomId } = useParams();
@@ -33,7 +33,7 @@ function RoomView() {
   return (
     <Container>
       <Header>
-        <styled.Text>{room.label}</styled.Text>
+        <styled.Header1>{room.label}</styled.Header1>
         <IconButton
           icon={faEdit}
           onClick={() => {
@@ -54,7 +54,12 @@ function RoomView() {
         <styled.PanelOne>
           <Widget songUrl={room.songUrl} />
         </styled.PanelOne>
-        <styled.PanelTwo />
+        <styled.TemporaryPanel>
+          <styled.MessagesIcon icon={faMessage} />
+          <styled.Paragraph>
+            <em>User messaging features under development</em>
+          </styled.Paragraph>
+        </styled.TemporaryPanel>
       </Body>
     </Container>
   );
