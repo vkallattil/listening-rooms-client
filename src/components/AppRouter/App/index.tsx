@@ -15,13 +15,13 @@ function App() {
       <styled.NavigationBar>
         <styled.RoomsHeader>
           <styled.RoomsTitle>ROOMS</styled.RoomsTitle>
-          <Button
+          <styled.CreateButton
             onClick={() => {
               navigate("/create-room");
             }}
           >
             CREATE
-          </Button>
+          </styled.CreateButton>
         </styled.RoomsHeader>
         <SearchBar />
         <RoomSelection roomLabels={rooms} loading={loading} />

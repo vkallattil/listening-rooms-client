@@ -77,14 +77,14 @@ function CreateEditRoom() {
             onClick={match ? handleEditRoom : handleCreateRoom}
             margin="0px 15px 0px 0px"
           >
-            {match ? "SAVE" : "CREATE"}
+            {match ? "Save" : "Create"}
           </Button>
           <SecondaryButton
             onClick={() => {
               navigate(-1);
             }}
           >
-            CANCEL
+            Cancel
           </SecondaryButton>
         </styled.ButtonContainer>
       </Body>
