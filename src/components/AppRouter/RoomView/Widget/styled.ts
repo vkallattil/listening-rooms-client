@@ -16,7 +16,7 @@ export const WidgetContainer = styled.div`
   align-self: flex-start;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const WidgetBanner = styled.div`
@@ -51,16 +51,44 @@ export const SongInformation = styled.div`
 export const AlbumTitle = styled.div`
   font-size: 32px;
   font-weight: 700;
-  margin-top: 15px;
   text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  flex-grow: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; /* Set the height of the fade-out gradient */
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 160, 139, 0),
+      rgba(255, 160, 139, 1)
+    );
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 13px; /* Set the height of the fade-out gradient */
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 160, 139, 1),
+      rgba(255, 160, 139, 0)
+    );
+  }
 `;
 
 export const ArtistName = styled.span`
-  font-size: 16px;
   font-weight: 600;
   width: fit-content;
   text-transform: uppercase;
   border-radius: 2px;
+  margin-top: 15px;
 `;
 
 export const Icon = styled(FontAwesomeIcon)<{ type: string }>`
@@ -90,5 +118,18 @@ export const PlaybackButton = styled.button`
   justify-content: center;
   & > svg {
     margin: 0;
+  }
+`;
+
+export const QueueChangeButton = styled(PlaybackButton)<{ isActive: boolean }>`
+  & > svg {
+    transition: 0.2s;
+    color: ${props => props.isActive ? "#ffffff" : "#000000"};
+    opacity: ${props => props.isActive ? 1 : 0.15};
+
+    &:hover {
+      color: #ffffff;
+      opacity: ${props => props.isActive ? 1 : 0.65};
+    }
   }
 `;

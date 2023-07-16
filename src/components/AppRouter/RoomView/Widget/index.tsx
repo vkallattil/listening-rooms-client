@@ -27,6 +27,9 @@ function Widget({ songUrl }: WidgetProps) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [songPosition, setSongPosition] = useState<number>(0);
 
+  const [onRepeat, setOnRepeat] = useState(false);
+  const [onShuffle, setOnShuffle] = useState(false);
+
   // Initialize SC widget when iframe renders.
   useEffect(() => {
     if (widgetRef.current) {
@@ -84,10 +87,10 @@ function Widget({ songUrl }: WidgetProps) {
           <styled.WidgetBanner>
             <styled.DefaultAlbumCover />
             <styled.SongInformation>
-              <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
               <styled.ArtistName>
                 {currentSound.user.username}
               </styled.ArtistName>
+              <styled.AlbumTitle>{currentSound.title}</styled.AlbumTitle>
             </styled.SongInformation>
           </styled.WidgetBanner>
 
@@ -97,9 +100,12 @@ function Widget({ songUrl }: WidgetProps) {
           />
 
           <styled.PlaybackContainer>
-            <styled.PlaybackButton>
+            <styled.QueueChangeButton
+              isActive={onShuffle}
+              onClick={() => setOnShuffle(!onShuffle)}
+            >
               <styled.Icon type="small" icon={faRandom} />
-            </styled.PlaybackButton>
+            </styled.QueueChangeButton>
             <styled.PlaybackButton>
               <styled.Icon type="medium" icon={faBackward} />
             </styled.PlaybackButton>
@@ -127,9 +133,12 @@ function Widget({ songUrl }: WidgetProps) {
             <styled.PlaybackButton>
               <styled.Icon type="medium" icon={faForward} />
             </styled.PlaybackButton>
-            <styled.PlaybackButton>
+            <styled.QueueChangeButton
+              isActive={onRepeat}
+              onClick={() => setOnRepeat(!onRepeat)}
+            >
               <styled.Icon type="small" icon={faRepeat} />
-            </styled.PlaybackButton>
+            </styled.QueueChangeButton>
           </styled.PlaybackContainer>
         </styled.WidgetContainer>
       )}

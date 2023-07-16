@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRooms } from "../../RoomsProvider";
 import Text from "../../_base/Text";
 import { faEdit, faMessage, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Chat from "./Chat";
 
 function RoomView() {
   const { roomId } = useParams();
@@ -42,7 +43,7 @@ function RoomView() {
         />
         <IconButton
           icon={faTrash}
-          color="#d95555"
+          color="rgba(255, 116, 116, 1)"
           onClick={() => {
             removeRoom(roomId).then(() => {
               navigate("/");
@@ -54,12 +55,15 @@ function RoomView() {
         <styled.PanelOne>
           <Widget songUrl={room.songUrl} />
         </styled.PanelOne>
-        <styled.TemporaryPanel>
+        {/* <styled.TemporaryPanel>
           <styled.MessagesIcon icon={faMessage} />
           <styled.Paragraph>
             <em>User messaging features under development</em>
           </styled.Paragraph>
-        </styled.TemporaryPanel>
+        </styled.TemporaryPanel> */}
+        <styled.PanelTwo>
+          <Chat />
+        </styled.PanelTwo>
       </Body>
     </Container>
   );

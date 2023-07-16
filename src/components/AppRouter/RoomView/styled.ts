@@ -9,15 +9,22 @@ export const PanelOne = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  border-right: 2px solid #e4e4e4;
+  border-right: none;
   padding: 25px;
+  @media only screen and (min-width: 1200px) {
+    border-right: 2px solid #e4e4e4;
+  }
 `;
 
 export const PanelTwo = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 30%;
   min-width: 250px;
+  padding: 15px;
+  @media only screen and (min-width: 1200px) {
+    display: flex;
+  }
 `;
 
 export const TemporaryPanel = styled.div`

@@ -9,7 +9,7 @@ export const App = styled.div`
 export const NavigationBar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 350px;
+  min-width: 350px;
   padding: 30px;
   padding-right: 0;
   background: #ffffff;
