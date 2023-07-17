@@ -9,7 +9,7 @@ import {
   faBackward,
   faForward,
   faRepeat,
-} from "@fortawesome/free-solid-svg-icons";
+} from "../../../../utils/icons";
 import ProgressBar from "../ProgressBar";
 
 export interface WidgetProps {

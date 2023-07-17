@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as styled from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "../../../../utils/icons";
 
 function Chat() {
   const [messages, setMessages] = useState([]);

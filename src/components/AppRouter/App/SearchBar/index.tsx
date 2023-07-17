@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "../../../../utils/icons";
 import * as styled from "./styled";
 
 function SearchBar() {

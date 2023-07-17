@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 
 module.exports = {
   mode: "development",
@@ -20,6 +21,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
+    }),
+    new StatoscopeWebpackPlugin({
+      saveTo: "statoscope/index.html",
     }),
   ],
   module: {

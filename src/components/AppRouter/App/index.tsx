@@ -4,7 +4,6 @@ import * as styled from "./styled";
 import { useRooms } from "../../RoomsProvider";
 import RoomSelection from "./RoomSelection";
 import SearchBar from "./SearchBar";
-import Button from "../../_base/Button";
 
 function App() {
   const navigate = useNavigate();

@@ -6,8 +6,7 @@ import * as styled from "./styled";
 import { Container, Header, Body } from "../../_base/ViewTemplate";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRooms } from "../../RoomsProvider";
-import Text from "../../_base/Text";
-import { faEdit, faMessage, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faMessage, faTrash } from "../../../utils/icons";
 import Chat from "./Chat";
 
 function RoomView() {
