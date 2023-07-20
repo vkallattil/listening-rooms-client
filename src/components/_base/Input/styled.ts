@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Input = styled.input<{ width?: string }>`
-  height: 30px;
+  height: 35px;
   min-width: 200px;
   width: ${props => props.width ? props.width : undefined};
   font-family: "Open Sans", sans-serif;
@@ -11,6 +11,7 @@ export const Input = styled.input<{ width?: string }>`
   padding-left: 10px;
   outline: none;
   margin-right: 15px;
+  box-sizing: border-box;
 `
 
 export const Label = styled.span`
@@ -21,4 +22,5 @@ export const Label = styled.span`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 `

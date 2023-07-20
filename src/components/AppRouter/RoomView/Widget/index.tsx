@@ -13,10 +13,10 @@ import {
 import ProgressBar from "../ProgressBar";
 
 export interface WidgetProps {
-  songUrl: string;
+  widgetUrl: string;
 }
 
-function Widget({ songUrl }: WidgetProps) {
+function Widget({ widgetUrl }: WidgetProps) {
   const widgetRef = useRef<HTMLIFrameElement>(null);
 
   const { widget, setWidget, setSendPlayback } = useContext(
@@ -41,7 +41,7 @@ function Widget({ songUrl }: WidgetProps) {
   useEffect(() => {
     if (widget) {
       widget.bind(SC.Widget.Events.READY, () => {
-        widget.load(songUrl, {
+        widget.load(widgetUrl, {
           callback: () => {
             widget.getCurrentSound((currentSound: SoundObject) => {
               console.log(currentSound);
@@ -72,7 +72,7 @@ function Widget({ songUrl }: WidgetProps) {
         // widget.unbind(SC.Widget.Events.PLAY_PROGRESS);
       }
     };
-  }, [widget, songUrl]);
+  }, [widget, widgetUrl]);
 
   return (
     <>

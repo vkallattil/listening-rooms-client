@@ -14,7 +14,7 @@ export const Header2 = styled.div<{ margin?: string }>`
 `;
 
 export const Paragraph = styled.div<{ margin?: string }>`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   margin: ${(props) => props.margin || undefined};
 `;

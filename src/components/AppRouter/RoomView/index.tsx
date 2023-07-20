@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { IconButton } from "../../_base/Button";
 import { getRoom } from "../../../api";
-import Widget from "./Widget";
 import * as styled from "./styled";
 import { Container, Header, Body } from "../../_base/ViewTemplate";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRooms } from "../../RoomsProvider";
 import { faEdit, faMessage, faTrash } from "../../../utils/icons";
+import Widget from "./Widget";
 import Chat from "./Chat";
+import SongQueue from "./SongQueue";
 
 function RoomView() {
   const { roomId } = useParams();
@@ -52,7 +53,8 @@ function RoomView() {
       </Header>
       <Body>
         <styled.PanelOne>
-          <Widget songUrl={room.songUrl} />
+          <Widget widgetUrl={room.widgetUrl} />
+          <SongQueue />
         </styled.PanelOne>
         {/* <styled.TemporaryPanel>
           <styled.MessagesIcon icon={faMessage} />

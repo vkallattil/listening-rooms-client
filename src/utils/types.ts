@@ -6,7 +6,7 @@ export interface RoomLabel {
 export interface Room {
   id: string;
   label: string;
-  songUrl: string;
+  widgetUrl: string;
 }
 
 type LoadOptions = {

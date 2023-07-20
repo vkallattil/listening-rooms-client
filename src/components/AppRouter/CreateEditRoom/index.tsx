@@ -16,13 +16,14 @@ function CreateEditRoom() {
   const match = useMatch("/edit-room/:roomId");
 
   const [name, setName] = useState("");
-  const [songUrl, setSongUrl] = useState("");
+  const [widgetUrl, setWidgetUrl] = useState("");
 
   const handleCreateRoom = () => {
     createRoom({
       label: name,
-      songUrl: songUrl,
+      widgetUrl: widgetUrl,
     }).then((room: Room) => {
+      console.log(room);
       navigate(`/rooms/${room.id}`);
     });
   };
@@ -32,7 +33,7 @@ function CreateEditRoom() {
     updateRoom({
       id: match.params.roomId,
       label: name,
-      songUrl: songUrl,
+      widgetUrl: widgetUrl,
     }).then(() => {
       navigate(`/rooms/${match.params.roomId}`);
     });
@@ -43,11 +44,11 @@ function CreateEditRoom() {
     if (match) {
       getRoom(match.params.roomId).then((response) => {
         setName(response.data.label);
-        setSongUrl(response.data.songUrl);
+        setWidgetUrl(response.data.widgetUrl);
       });
     } else {
       setName("");
-      setSongUrl("");
+      setWidgetUrl("");
     }
   }, [match]);
 
@@ -68,8 +69,8 @@ function CreateEditRoom() {
           <Input
             label="Song URL"
             width="400px"
-            value={songUrl}
-            onChange={(event) => setSongUrl(event.target.value)}
+            value={widgetUrl}
+            onChange={(event) => setWidgetUrl(event.target.value)}
           />
         </styled.Form>
         <styled.ButtonContainer>

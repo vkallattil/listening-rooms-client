@@ -22,9 +22,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
-    new StatoscopeWebpackPlugin({
-      saveTo: "statoscope/index.html",
-    }),
+    new StatoscopeWebpackPlugin(),
   ],
   module: {
     rules: [

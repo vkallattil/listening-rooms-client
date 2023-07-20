@@ -9,6 +9,7 @@ import { faRandom } from "@fortawesome/free-solid-svg-icons/faRandom";
 import { faBackward } from "@fortawesome/free-solid-svg-icons/faBackward";
 import { faForward } from "@fortawesome/free-solid-svg-icons/faForward";
 import { faRepeat } from "@fortawesome/free-solid-svg-icons/faRepeat";
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 
 export {
   faTrash,
@@ -22,4 +23,5 @@ export {
   faRepeat,
   faEdit,
   faMessage,
+  faPlus
 };

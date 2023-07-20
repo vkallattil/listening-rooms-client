@@ -17,6 +17,7 @@ export const WidgetContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  margin-bottom: 25px;
 `;
 
 export const WidgetBanner = styled.div`
