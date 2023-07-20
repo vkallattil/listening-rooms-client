@@ -1,12 +1,9 @@
-import React, { useRef, useEffect, createContext, useState } from "react";
-import { Widget } from "../../utils/types"
-import "./soundcloud-widget.js";
+import React, { useRef, useEffect, createContext, useState, useContext } from "react";
+import { useWidget } from "../WidgetProvider";
 
 export interface SocketContextValue {
   sendMessage: (message: string) => void;
   changeRoom: (roomId: string) => void;
-  widget: Widget | null;
-  setWidget: React.Dispatch<React.SetStateAction<Widget | null>>;
   setSendPlayback: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -14,10 +11,10 @@ export const SocketContext = createContext<SocketContextValue | null>(null);
 
 function SocketProvider({ children }: { children: React.ReactNode }) {
   const socket = useRef<WebSocket | null>(null);
+  const { widget } = useWidget();
 
   const [receivedPlayback, setReceivedPlayback] = useState<string | null>(null);
   const [sendPlayback, setSendPlayback] = useState<string | null>(null);
-  const [widget, setWidget] = useState<Widget | null>(null);
 
   const sendMessage = (message: any) => {
     if (socket.current && socket.current.readyState === WebSocket.OPEN) {
@@ -73,14 +70,16 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
       value={{
         sendMessage,
         changeRoom,
-        widget,
-        setWidget,
         setSendPlayback,
       }}
     >
       {children}
     </SocketContext.Provider>
   );
+}
+
+export function useSocket() {
+  return useContext(SocketContext);
 }
 
 export default SocketProvider;

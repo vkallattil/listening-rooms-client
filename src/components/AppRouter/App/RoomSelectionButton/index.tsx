@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { SocketContext, SocketContextValue } from "../../../SocketContext";
+import React from "react";
+import { useSocket } from "../../../SocketProvider";
 import * as styled from "./styled";
 import { useParams } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function RoomSelectionButton({
   label,
   id,
 }: RoomSelectionButtonProps) {
-  const { changeRoom } = useContext(SocketContext) as SocketContextValue;
+  const { changeRoom } = useSocket();
   const { roomId } = useParams<{ roomId: string }>();
 
   const handleClick = () => {

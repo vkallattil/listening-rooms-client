@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useContext, useState } from "react";
-import { SocketContext, SocketContextValue } from "../../../SocketContext";
+import React, { useRef, useEffect, useState } from "react";
+import { useSocket } from "../../../SocketProvider";
 import * as styled from "./styled";
 import { SoundObject, Widget } from "../../../../utils/types";
 import {
@@ -11,6 +11,7 @@ import {
   faRepeat,
 } from "../../../../utils/icons";
 import ProgressBar from "../ProgressBar";
+import { useWidget } from "../../../WidgetProvider";
 
 export interface WidgetProps {
   widgetUrl: string;
@@ -18,10 +19,9 @@ export interface WidgetProps {
 
 function Widget({ widgetUrl }: WidgetProps) {
   const widgetRef = useRef<HTMLIFrameElement>(null);
+  const { widget, setWidget } = useWidget();
 
-  const { widget, setWidget, setSendPlayback } = useContext(
-    SocketContext
-  ) as SocketContextValue;
+  const { setSendPlayback } = useSocket();
 
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);

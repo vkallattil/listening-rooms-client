@@ -5,9 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import RoomView from "./RoomView";
 import IndexPage from "./IndexPage";
-import SocketProvider from "../SocketContext";
+import SocketProvider from "../SocketProvider";
 import RoomsProvider from "../RoomsProvider";
 import CreateEditRoom from "./CreateEditRoom";
+import WidgetProvider from "../WidgetProvider";
 
 const router = createBrowserRouter([
   {
@@ -29,18 +30,20 @@ const router = createBrowserRouter([
       {
         path: "/edit-room/:roomId",
         element: <CreateEditRoom />,
-      }
+      },
     ],
   },
 ]);
 
 function AppRouter() {
   return (
-    <SocketProvider>
-      <RoomsProvider>
-        <RouterProvider router={router} />
-      </RoomsProvider>
-    </SocketProvider>
+    <WidgetProvider>
+      <SocketProvider>
+        <RoomsProvider>
+          <RouterProvider router={router} />
+        </RoomsProvider>
+      </SocketProvider>
+    </WidgetProvider>
   );
 }
 
