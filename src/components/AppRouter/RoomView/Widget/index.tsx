@@ -44,38 +44,24 @@ function Widget({ widgetUrl }: WidgetProps) {
         widget.load(widgetUrl, {
           callback: () => {
             widget.getCurrentSound((currentSound: SoundObject) => {
-              console.log(currentSound);
               setCurrentSound(currentSound);
             });
             widget.getSounds((sounds) => {
-              console.log(sounds);
               setSounds(sounds);
             });
           },
         });
-        // TODO: Figure out how to get the widget to send play events without infinite loop.
         widget.bind(SC.Widget.Events.PLAY, () => {
           setIsPlaying(true);
-          console.log("PLAY");
         });
         widget.bind(SC.Widget.Events.PAUSE, () => {
           setIsPlaying(false);
-          console.log("PAUSE");
         });
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
           setSongPosition(e.currentPosition);
         });
       });
     }
-
-    return () => {
-      if (widget) {
-        // widget.unbind(SC.Widget.Events.READY);
-        // widget.unbind(SC.Widget.Events.PLAY);
-        // widget.unbind(SC.Widget.Events.PAUSE);
-        // widget.unbind(SC.Widget.Events.PLAY_PROGRESS);
-      }
-    };
   }, [widget, widgetUrl]);
 
   return (
