@@ -9,14 +9,20 @@ import { faEdit, faMessage, faTrash } from "../../../utils/icons";
 import Widget from "./Widget";
 import Chat from "./Chat";
 import SongQueue from "./SongQueue";
+import { useWidget } from "../../WidgetProvider";
 
 function RoomView() {
   const { roomId } = useParams();
   const { removeRoom } = useRooms();
   const navigate = useNavigate();
+  const { sounds } = useWidget();
 
   const [room, setRoom] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    console.log(sounds);
+  }, [sounds]);
 
   useEffect(() => {
     if (!loading) {
@@ -54,7 +60,7 @@ function RoomView() {
       <Body>
         <styled.PanelOne>
           <Widget widgetUrl={room.widgetUrl} />
-          <SongQueue />
+          {sounds.length > 1 && <SongQueue />}
         </styled.PanelOne>
         {/* <styled.TemporaryPanel>
           <styled.MessagesIcon icon={faMessage} />

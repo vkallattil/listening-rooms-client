@@ -19,11 +19,11 @@ export interface WidgetProps {
 
 function Widget({ widgetUrl }: WidgetProps) {
   const widgetRef = useRef<HTMLIFrameElement>(null);
-  const { widget, setWidget } = useWidget();
+  const { widget, setWidget, setSounds, currentSound, setCurrentSound } =
+    useWidget();
 
   const { setSendPlayback } = useSocket();
 
-  const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [songPosition, setSongPosition] = useState<number>(0);
 
@@ -46,6 +46,10 @@ function Widget({ widgetUrl }: WidgetProps) {
             widget.getCurrentSound((currentSound: SoundObject) => {
               console.log(currentSound);
               setCurrentSound(currentSound);
+            });
+            widget.getSounds((sounds) => {
+              console.log(sounds);
+              setSounds(sounds);
             });
           },
         });

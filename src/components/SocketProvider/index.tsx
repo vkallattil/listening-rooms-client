@@ -11,7 +11,6 @@ export const SocketContext = createContext<SocketContextValue | null>(null);
 
 function SocketProvider({ children }: { children: React.ReactNode }) {
   const socket = useRef<WebSocket | null>(null);
-  const { widget } = useWidget();
 
   const [receivedPlayback, setReceivedPlayback] = useState<string | null>(null);
   const [sendPlayback, setSendPlayback] = useState<string | null>(null);
@@ -29,10 +28,8 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (sendPlayback === "PAUSE") {
       console.log("SEND PAUSE");
-      sendMessage({ type: "PLAYBACK", payload: "PAUSE" });
     } else if (sendPlayback === "PLAY") {
       console.log("SEND PLAY");
-      sendMessage({ type: "PLAYBACK", payload: "PLAY" });
     }
   }, [sendPlayback]);
 
@@ -40,10 +37,8 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
     if (receivedPlayback) {
       if (receivedPlayback === "PLAY") {
         console.log("RECEIVE PLAY");
-        widget?.play();
       } else if (receivedPlayback === "PAUSE") {
         console.log("RECEIVE PAUSE");
-        widget?.pause();
       }
     }
   }, [receivedPlayback]);

@@ -14,6 +14,8 @@ type LoadOptions = {
 };
 
 export type Widget = {
+  skip: (index: number) => unknown;
+  getSounds: (callback: (sounds: SoundObject[]) => void) => void;
   bind: (event: string, callback: (e: any) => void) => void;
   unbind: (event: string) => void;
   load: (url: string, options: LoadOptions) => void;
@@ -25,6 +27,7 @@ export type Widget = {
 };
 
 export type SoundObject = {
+  id: string;
   title: string;
   "artwork_url": string;
   user: {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { useWidget } from "../../../WidgetProvider";
 import * as styled from "./styled";
+import { formatTime } from "../../../../utils/dates";
 
 interface ProgressBarProps {
   duration: number;
@@ -29,15 +30,6 @@ function ProgressBar({ duration, songPosition }: ProgressBarProps) {
       inputRef.current.value = songPosition;
     }
   });
-
-  function formatTime(milliseconds: number): string {
-    const totalSeconds = Math.floor(milliseconds / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-  
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${minutes}:${formattedSeconds}`;
-  }  
 
   return (
     <styled.ProgressBarWrapper>

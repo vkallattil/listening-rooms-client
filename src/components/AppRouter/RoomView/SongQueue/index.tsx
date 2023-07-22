@@ -1,21 +1,33 @@
 import React from "react";
 import * as styled from "./styled";
 import Text from "../../../_base/Text";
+import { formatTime } from "../../../../utils/dates";
+import { useWidget } from "../../../WidgetProvider";
 
-interface SongQueueProps {
-  
-}
+function SongQueue() {
+  const { widget, sounds, currentSound, setCurrentSound } = useWidget();
 
-function SongQueue({}: SongQueueProps) {
   return (
     <styled.SongQueueContainer>
       <styled.SongQueueHeader>PLAYLIST</styled.SongQueueHeader>
       <styled.SongQueueList>
-        <styled.ListItem>
-          <styled.ListItemSong>Puff Daddy</styled.ListItemSong>
-          <styled.ListItemArtist>JPEGMAFIA</styled.ListItemArtist>
-          <Text type="p">3:09</Text>
-        </styled.ListItem>
+        {sounds.map((sound, index) => {
+          return (
+            <styled.ListItem
+              onClick={() => {
+                widget.skip(index);
+                setCurrentSound(sound);
+              }}
+              isCurrent={currentSound.id === sound.id ? true : false}
+            >
+              <styled.ListItemSong>{sound.title}</styled.ListItemSong>
+              <styled.ListItemArtist>
+                {sound.user.username}
+              </styled.ListItemArtist>
+              <Text type="p">{formatTime(sound.duration)}</Text>
+            </styled.ListItem>
+          );
+        })}
       </styled.SongQueueList>
     </styled.SongQueueContainer>
   );
