@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, createContext, useState, useContext } from "react";
+import React, {
+  useRef,
+  useEffect,
+  createContext,
+  useState,
+  useContext,
+} from "react";
 import { useWidget } from "../WidgetProvider";
 
 export interface SocketContextValue {
@@ -44,7 +50,9 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   }, [receivedPlayback]);
 
   useEffect(() => {
-    socket.current = new WebSocket("ws://localhost:8081/socket");
+    socket.current = new WebSocket(
+      "ws://listening-rooms-api.onrender.com/socket"
+    );
 
     socket.current.onmessage = (event) => {
       const data = JSON.parse(event.data);

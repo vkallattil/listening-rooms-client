@@ -2,7 +2,7 @@ import axios from "axios";
 import { Room } from "../utils/types";
 
 const api = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: "https://listening-rooms-api.onrender.com/",
 });
 
 export function getRooms() {
