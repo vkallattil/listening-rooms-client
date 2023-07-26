@@ -51,7 +51,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     socket.current = new WebSocket(
-      "ws://listening-rooms-api.onrender.com/socket"
+      "wss://listening-rooms-api.onrender.com/socket"
     );
 
     socket.current.onmessage = (event) => {
