@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/index.tsx",
   devtool: "inline-source-map",
   devServer: {
@@ -11,9 +11,8 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
-    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/",
+    filename: "bundle.js",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".css"],
