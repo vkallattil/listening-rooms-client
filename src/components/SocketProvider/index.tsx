@@ -5,7 +5,6 @@ import React, {
   useState,
   useContext,
 } from "react";
-import { useWidget } from "../WidgetProvider";
 
 export interface SocketContextValue {
   sendMessage: (message: string) => void;
@@ -50,9 +49,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   }, [receivedPlayback]);
 
   useEffect(() => {
-    socket.current = new WebSocket(
-      "wss://listening-rooms-api.onrender.com/socket"
-    );
+    socket.current = new WebSocket(process.env.REACT_APP_SOCKET_URL);
 
     socket.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
