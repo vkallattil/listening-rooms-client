@@ -1,8 +1,10 @@
 import axios from "axios";
 import { Room } from "../utils/types";
 
+console.log(process.env.REACT_APP_API_URL);
+
 const api = axios.create({
-  baseURL: "https://listening-rooms-api.onrender.com/",
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export function getRooms() {
