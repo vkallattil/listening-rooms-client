@@ -129,8 +129,8 @@ export const QueueChangeButton = styled(PlaybackButton)<{ isActive: boolean }>`
     opacity: ${props => props.isActive ? 1 : 0.15};
 
     &:hover {
-      color: #ffffff;
-      opacity: ${props => props.isActive ? 1 : 0.65};
+      color: ${props => props.isActive ? "#ffffff" : "#000000"};
+      opacity: ${props => props.isActive ? 1 : 0.35};
     }
   }
 `;

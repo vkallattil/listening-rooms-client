@@ -37,13 +37,13 @@ const router = createBrowserRouter([
 
 function AppRouter() {
   return (
-    <WidgetProvider>
-      <SocketProvider>
+    <SocketProvider>
+      <WidgetProvider>
         <RoomsProvider>
           <RouterProvider router={router} />
         </RoomsProvider>
-      </SocketProvider>
-    </WidgetProvider>
+      </WidgetProvider>
+    </SocketProvider>
   );
 }
 
