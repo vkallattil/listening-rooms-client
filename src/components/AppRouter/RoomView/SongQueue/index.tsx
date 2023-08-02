@@ -12,6 +12,17 @@ function SongQueue() {
       <styled.SongQueueHeader>PLAYLIST</styled.SongQueueHeader>
       <styled.SongQueueList>
         {sounds.map((sound, index) => {
+          if (sound.monetization_model === "AD_SUPPORTED") {
+            return (
+              // TODO: Work around this or provide helpful message.
+              <styled.ListItem notAvailable>
+                <styled.ListItemArtist>
+                  <em>Song Information Not Available</em>
+                </styled.ListItemArtist>
+                <Text type="p">-:--</Text>
+              </styled.ListItem>
+            );
+          }
           return (
             <styled.ListItem
               onClick={() => {

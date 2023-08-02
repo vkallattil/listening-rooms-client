@@ -23,13 +23,14 @@ export const SongQueueList = styled.div`
   border: 2px solid #e5e5e5;
 `;
 
-export const ListItem = styled.div<{ last?: boolean; isCurrent?: boolean }>`
+export const ListItem = styled.div<{ last?: boolean; isCurrent?: boolean; notAvailable?: boolean }>`
   display: flex;
   align-items: center;
   padding: 7px 10px;
   border-bottom: ${(props) => (props.last ? "none" : "1px solid #e5e5e5")};
   color: ${props => props.isCurrent ? "#ffa08b" : "#747474"};
-  cursor: pointer;
+  opacity: ${props => props.notAvailable ? 0.5 : 1};
+  cursor: ${props => props.notAvailable ? undefined : "pointer"};
 `;
 
 export const ListItemSong = styled.div`

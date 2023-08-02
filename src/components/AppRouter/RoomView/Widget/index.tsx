@@ -47,6 +47,7 @@ function Widget({ widgetUrl }: WidgetProps) {
               setCurrentSound(currentSound);
             });
             widget.getSounds((sounds) => {
+              console.log(sounds);
               setSounds(sounds);
             });
           },
@@ -96,7 +97,14 @@ function Widget({ widgetUrl }: WidgetProps) {
             >
               <styled.Icon type="small" icon={faRandom} />
             </styled.QueueChangeButton>
-            <styled.PlaybackButton>
+            <styled.PlaybackButton
+              onClick={() => {
+                widget.prev();
+                widget.getCurrentSound((currentSound: SoundObject) => {
+                  setCurrentSound(currentSound);
+                });
+              }}
+            >
               <styled.Icon type="medium" icon={faBackward} />
             </styled.PlaybackButton>
 
@@ -120,7 +128,14 @@ function Widget({ widgetUrl }: WidgetProps) {
               </styled.PlaybackButton>
             )}
 
-            <styled.PlaybackButton>
+            <styled.PlaybackButton
+              onClick={() => {
+                widget.next();
+                widget.getCurrentSound((currentSound: SoundObject) => {
+                  setCurrentSound(currentSound);
+                });
+              }}
+            >
               <styled.Icon type="medium" icon={faForward} />
             </styled.PlaybackButton>
             <styled.QueueChangeButton

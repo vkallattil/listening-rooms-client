@@ -15,6 +15,8 @@ type LoadOptions = {
 };
 
 export type Widget = {
+  prev(): unknown;
+  next(): unknown;
   skip: (index: number) => unknown;
   getSounds: (callback: (sounds: SoundObject[]) => void) => void;
   bind: (event: string, callback: (e: any) => void) => void;
@@ -28,6 +30,7 @@ export type Widget = {
 };
 
 export type SoundObject = {
+  monetization_model: string;
   id: string;
   title: string;
   "artwork_url": string;
