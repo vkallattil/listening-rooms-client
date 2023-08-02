@@ -5,7 +5,7 @@ import * as styled from "./styled";
 import { Container, Header, Body } from "../../_base/ViewTemplate";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRooms } from "../../RoomsProvider";
-import { faEdit, faMessage, faTrash } from "../../../utils/icons";
+import { faEdit, faTrash } from "../../../utils/icons";
 import Widget from "./Widget";
 import Chat from "./Chat";
 import SongQueue from "./SongQueue";
