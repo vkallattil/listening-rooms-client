@@ -7,6 +7,7 @@ export interface Room {
   id: string;
   label: string;
   widgetUrl: string;
+  socketUsers: string[];
 }
 
 type LoadOptions = {

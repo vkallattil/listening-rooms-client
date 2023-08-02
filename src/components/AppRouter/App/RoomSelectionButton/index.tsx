@@ -1,5 +1,4 @@
 import React from "react";
-import { useSocket } from "../../../SocketProvider";
 import * as styled from "./styled";
 import { useParams } from "react-router-dom";
 
@@ -12,15 +11,10 @@ function RoomSelectionButton({
   label,
   id,
 }: RoomSelectionButtonProps) {
-  const { changeRoom } = useSocket();
   const { roomId } = useParams<{ roomId: string }>();
 
-  const handleClick = () => {
-    changeRoom(id);
-  };
-
   return (
-    <styled.Link isActive={roomId === id} to={`/rooms/${id}`} onClick={handleClick}>
+    <styled.Link isActive={roomId === id} to={`/rooms/${id}`}>
       <styled.Label>{label}</styled.Label>
     </styled.Link>
   );

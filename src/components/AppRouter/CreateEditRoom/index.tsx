@@ -40,7 +40,6 @@ function CreateEditRoom() {
   };
 
   useEffect(() => {
-    console.log(match);
     if (match) {
       getRoom(match.params.roomId).then((response) => {
         setName(response.data.label);

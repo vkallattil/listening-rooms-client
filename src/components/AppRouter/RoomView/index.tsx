@@ -10,10 +10,12 @@ import Widget from "./Widget";
 import Chat from "./Chat";
 import SongQueue from "./SongQueue";
 import { useWidget } from "../../WidgetProvider";
+import { useSocket } from "../../SocketProvider";
 
 function RoomView() {
   const { roomId } = useParams();
   const { removeRoom } = useRooms();
+  const { changeRoom } = useSocket();
   const navigate = useNavigate();
   const { sounds } = useWidget();
 
@@ -23,6 +25,10 @@ function RoomView() {
   useEffect(() => {
     console.log(sounds);
   }, [sounds]);
+
+  useEffect(() => {
+    changeRoom(roomId);
+  }, [roomId])
 
   useEffect(() => {
     if (!loading) {

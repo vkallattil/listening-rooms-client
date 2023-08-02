@@ -5,6 +5,7 @@ import React, {
   useState,
   useContext,
 } from "react";
+import { useParams } from "react-router-dom";
 
 export interface SocketContextValue {
   sendMessage: (message: string) => void;
@@ -16,6 +17,7 @@ export const SocketContext = createContext<SocketContextValue | null>(null);
 
 function SocketProvider({ children }: { children: React.ReactNode }) {
   const socket = useRef<WebSocket | null>(null);
+  const { roomID } = useParams();
 
   const [receivedPlayback, setReceivedPlayback] = useState<string | null>(null);
   const [sendPlayback, setSendPlayback] = useState<string | null>(null);
@@ -26,7 +28,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const changeRoom = (roomId: string) => {
+  const changeRoom = (roomId: string | null) => {
     sendMessage({ type: "CHANGE_ROOM", payload: roomId });
   };
 
@@ -58,12 +60,21 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    socket.current.onopen = () => {
+      console.log("socket opened");
+      changeRoom(roomID);
+    }
+
     return () => {
       if (socket.current) {
         socket.current.close();
       }
     };
   }, []);
+
+  useEffect(() => {
+    console.log("roomID: " + roomID);
+  }, [roomID])
 
   return (
     <SocketContext.Provider
