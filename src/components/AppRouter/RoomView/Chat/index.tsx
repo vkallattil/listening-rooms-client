@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import * as styled from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "../../../../utils/icons";
+import { useSocket } from "../../../SocketProvider";
 
 function Chat() {
+  const { sendChat } = useSocket()
+
   const [messages, setMessages] = useState([]);
   const [writingMessage, setWritingMessage] = useState("");
 

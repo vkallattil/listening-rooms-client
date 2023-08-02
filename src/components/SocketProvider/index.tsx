@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 export interface SocketContextValue {
   sendMessage: (message: string) => void;
   changeRoom: (roomId: string) => void;
+  sendChat: (roomID: string, message: string) => void;
   setSendPlayback: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -21,14 +22,23 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   const [receivedPlayback, setReceivedPlayback] = useState<string | null>(null);
   const [sendPlayback, setSendPlayback] = useState<string | null>(null);
 
+  const [chats, setChats] = useState([])
+
   const sendMessage = (message: any) => {
     if (socket.current && socket.current.readyState === WebSocket.OPEN) {
       socket.current.send(JSON.stringify(message));
     }
   };
 
-  const changeRoom = (roomId: string | null) => {
-    sendMessage({ type: "CHANGE_ROOM", payload: roomId });
+  const changeRoom = (roomID: string | null) => {
+    sendMessage({ type: "CHANGE_ROOM", payload: roomID });
+  };
+
+  const sendChat = (roomID: string, message: string, ) => {
+    sendMessage({ type: "CHAT", payload: {
+      roomID: roomID,
+      message: message,
+    } });
   };
 
   useEffect(() => {
@@ -57,6 +67,10 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
       if (data.type === "PLAYBACK") {
         setReceivedPlayback(data.payload);
       }
+
+      if (data.type === "CHAT") {
+        setChats([])
+      }
     };
 
     return () => {
@@ -71,6 +85,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
       value={{
         sendMessage,
         changeRoom,
+        sendChat,
         setSendPlayback,
       }}
     >
