@@ -10,20 +10,10 @@ import RoomsProvider from "../RoomsProvider";
 import CreateEditRoom from "./CreateEditRoom";
 import WidgetProvider from "../WidgetProvider";
 
-const rootElement = (
-  <SocketProvider>
-    <WidgetProvider>
-      <RoomsProvider>
-        <App />
-      </RoomsProvider>
-    </WidgetProvider>
-  </SocketProvider>
-);
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: rootElement,
+    element: <App />,
     children: [
       {
         index: true,

@@ -23,10 +23,6 @@ function RoomView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(sounds);
-  }, [sounds]);
-
-  useEffect(() => {
     changeRoom(roomId);
   }, [roomId])
 
