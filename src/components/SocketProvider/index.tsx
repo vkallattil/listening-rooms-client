@@ -8,9 +8,10 @@ import React, {
 
 export interface SocketContextValue {
   sendMessage: (message: string) => void;
+  receivedPlayback: string | null;
   changeRoom: (roomId: string) => void;
   sendChat: (message: ChatMessage) => void;
-  setSendPlayback: React.Dispatch<React.SetStateAction<string | null>>;
+  sendPlayback: React.Dispatch<React.SetStateAction<string | null>>;
   socketID: string | null;
   chats: ChatMessage[];
   currentSocket: WebSocket | null;
@@ -47,23 +48,17 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
     sendMessage({ type: "CHAT", payload: chatMessage });
   };
 
-  useEffect(() => {
-    if (sendPlayback === "PAUSE") {
-      console.log("SEND PAUSE");
-    } else if (sendPlayback === "PLAY") {
-      console.log("SEND PLAY");
-    }
-  }, [sendPlayback]);
+  const sendPlaybackMessage = (playback: string) => {
+    sendMessage({ type: "PLAYBACK", payload: playback });
+  };
 
   useEffect(() => {
-    if (receivedPlayback) {
-      if (receivedPlayback === "PLAY") {
-        console.log("RECEIVE PLAY");
-      } else if (receivedPlayback === "PAUSE") {
-        console.log("RECEIVE PAUSE");
-      }
+    if (sendPlayback === "PAUSE") {
+      sendPlaybackMessage("PAUSE");
+    } else if (sendPlayback === "PLAY") {
+      sendPlaybackMessage("PLAY");
     }
-  }, [receivedPlayback]);
+  }, [sendPlayback]);
 
   useEffect(() => {
     socket.current = new WebSocket(process.env.REACT_APP_SOCKET_URL);
@@ -96,10 +91,11 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
         sendMessage,
         changeRoom,
         sendChat,
-        setSendPlayback,
+        sendPlayback: setSendPlayback,
         socketID,
         chats,
         currentSocket: socket.current,
+        receivedPlayback
       }}
     >
       {children}

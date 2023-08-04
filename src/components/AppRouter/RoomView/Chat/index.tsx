@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as styled from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "../../../../utils/icons";
@@ -9,6 +9,10 @@ function Chat() {
 
   const [name, setName] = useState<string>("Some Idiot");
   const [writingMessage, setWritingMessage] = useState<string>("");
+
+  useEffect(() => {
+    console.log(chats);
+  }, [chats])
 
   const handleSendMessage = () => {
     if (writingMessage !== "") {
@@ -47,7 +51,7 @@ function Chat() {
             Hey! Send some messages!
           </styled.IncomingMessageBubble>
           {chats &&
-            chats.map((message, index) => {
+            chats.map((message) => {
               if (message.senderID == socketID) {
                 return (
                   <styled.Message>

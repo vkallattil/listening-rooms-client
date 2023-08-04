@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const IFrame = styled.iframe`
   position: absolute;
   visibility: hidden;
+  opacity: 0;
 `;
 
 export const WidgetContainer = styled.div`

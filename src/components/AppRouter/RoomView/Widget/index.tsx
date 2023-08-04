@@ -22,7 +22,7 @@ function Widget({ widgetUrl }: WidgetProps) {
   const { widget, setWidget, setSounds, currentSound, setCurrentSound } =
     useWidget();
 
-  const { setSendPlayback } = useSocket();
+  const { sendPlayback } = useSocket();
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [songPosition, setSongPosition] = useState<number>(0);
@@ -110,8 +110,7 @@ function Widget({ widgetUrl }: WidgetProps) {
             {isPlaying ? (
               <styled.PlaybackButton
                 onClick={() => {
-                  widget.pause();
-                  setSendPlayback("PAUSE");
+                  sendPlayback("PAUSE");
                 }}
               >
                 <styled.Icon type="large" icon={faPause} />
@@ -119,8 +118,7 @@ function Widget({ widgetUrl }: WidgetProps) {
             ) : (
               <styled.PlaybackButton
                 onClick={() => {
-                  widget.play();
-                  setSendPlayback("PLAY");
+                  sendPlayback("PLAY");
                 }}
               >
                 <styled.Icon type="large" icon={faPlay} />
