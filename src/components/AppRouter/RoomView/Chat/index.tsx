@@ -2,17 +2,23 @@ import React, { useState } from "react";
 import * as styled from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "../../../../utils/icons";
-import { useSocket } from "../../../SocketProvider";
+import { useSocket, ChatMessage } from "../../../SocketProvider";
 
 function Chat() {
-  const { sendChat } = useSocket()
+  const { sendChat, socketID, chats } = useSocket();
 
-  const [messages, setMessages] = useState([]);
-  const [writingMessage, setWritingMessage] = useState("");
+  const [name, setName] = useState<string>("Some Idiot");
+  const [writingMessage, setWritingMessage] = useState<string>("");
 
   const handleSendMessage = () => {
     if (writingMessage !== "") {
-      setMessages([...messages, writingMessage]);
+      const newMessage = {
+        senderID: socketID,
+        message: writingMessage,
+        senderName: name,
+      };
+      console.log(newMessage);
+      sendChat(newMessage);
       setWritingMessage("");
     }
   };
@@ -26,33 +32,57 @@ function Chat() {
 
   return (
     <>
-      <styled.ChatWindow>
-        <styled.IncomingMessageBubble>
-          Hey! Send some messages!
-        </styled.IncomingMessageBubble>
-        {messages.map((message) => {
-          return (
-            <styled.OutgoingMessageBubble>
-              {message}
-            </styled.OutgoingMessageBubble>
-          );
-        })}
-      </styled.ChatWindow>
-      <styled.MessageTextAreaContainer>
-        <styled.MessageTextArea
-          value={writingMessage}
+      <styled.ChatHeader>
+        <styled.ChatTitle>Set Name:</styled.ChatTitle>
+        <styled.NameInput
+          value={name}
           onChange={(event) => {
-            setWritingMessage(event.target.value);
+            setName(event.target.value);
           }}
-          placeholder="Type your message here..."
-          onKeyDown={handlePressEnter}
         />
-        <styled.Actions>
-          <styled.SendButton onClick={handleSendMessage}>
-            <FontAwesomeIcon icon={faPaperPlane} />
-          </styled.SendButton>
-        </styled.Actions>
-      </styled.MessageTextAreaContainer>
+      </styled.ChatHeader>
+      <styled.ChatContainer>
+        <styled.ChatWindow>
+          <styled.IncomingMessageBubble>
+            Hey! Send some messages!
+          </styled.IncomingMessageBubble>
+          {chats &&
+            chats.map((message) => {
+              if (message.senderID == socketID) {
+                return (
+                  <styled.Message>
+                    <styled.OutgoingMessageBubble>
+                      {message.message}
+                    </styled.OutgoingMessageBubble>
+                  </styled.Message>
+                );
+              }
+              return (
+                <styled.Message>
+                  <styled.NameLabel>{message.senderName}</styled.NameLabel>
+                  <styled.IncomingMessageBubble>
+                    {message.message}
+                  </styled.IncomingMessageBubble>
+                </styled.Message>
+              );
+            })}
+        </styled.ChatWindow>
+      </styled.ChatContainer>
+      <styled.MessageTextAreaContainer>
+          <styled.MessageTextArea
+            value={writingMessage}
+            onChange={(event) => {
+              setWritingMessage(event.target.value);
+            }}
+            placeholder="Type your message here..."
+            onKeyDown={handlePressEnter}
+          />
+          <styled.Actions>
+            <styled.SendButton onClick={handleSendMessage}>
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </styled.SendButton>
+          </styled.Actions>
+        </styled.MessageTextAreaContainer>
     </>
   );
 }

@@ -12,12 +12,12 @@ function SongQueue() {
       <styled.SongQueueHeader>PLAYLIST</styled.SongQueueHeader>
       <styled.SongQueueList>
         {sounds.map((sound, index) => {
-          if (sound.monetization_model === "AD_SUPPORTED") {
+          if (!sound.title && !sound.user) {
             return (
               // TODO: Work around this or provide helpful message.
               <styled.ListItem notAvailable>
                 <styled.ListItemArtist>
-                  <em>Song Information Not Available</em>
+                  <em>Song Information Loading...</em>
                 </styled.ListItemArtist>
                 <Text type="p">-:--</Text>
               </styled.ListItem>

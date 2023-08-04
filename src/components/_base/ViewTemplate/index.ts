@@ -22,4 +22,6 @@ export const Body = styled.div<{ flexDirection?: string; padding?: string }>`
   border-radius: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
+  height: 100%;
+  max-height: 100%;
 `;

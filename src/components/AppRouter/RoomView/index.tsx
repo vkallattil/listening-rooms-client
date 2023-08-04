@@ -15,7 +15,7 @@ import { useSocket } from "../../SocketProvider";
 function RoomView() {
   const { roomId } = useParams();
   const { removeRoom } = useRooms();
-  const { changeRoom } = useSocket();
+  const { changeRoom, currentSocket } = useSocket();
   const navigate = useNavigate();
   const { sounds } = useWidget();
 
@@ -23,8 +23,10 @@ function RoomView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    changeRoom(roomId);
-  }, [roomId])
+    if (currentSocket) {
+      changeRoom(roomId);
+    }
+  }, [roomId, currentSocket]);
 
   useEffect(() => {
     if (!loading) {

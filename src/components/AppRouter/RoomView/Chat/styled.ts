@@ -1,12 +1,56 @@
 import styled from "styled-components";
 
+export const ChatContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: scroll;
+  box-sizing: content-box;
+`;
+
+export const ChatHeader = styled.div`
+  display: flex;
+  border-bottom: 2px solid #e4e4e4;
+  align-items: center;
+  padding: 5px 8px;
+`
+
+export const ChatTitle = styled.div`
+  font-size: 18px;
+`
+
+export const NameInput = styled.input`
+  border: none;
+  outline: none;
+  font-size: 18px;
+  margin-left: 5px;
+  color: #747474;
+  font-family: "Open Sans", sans-serif;
+  flex-grow: 1;
+`;
+
+
 export const ChatWindow = styled.div`
   flex-grow: 1;
-  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  margin-bottom: 15px;
 `;
+
+export const Message = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+` 
+
+export const NameLabel = styled.div`
+  font-size: 12px;
+  align-self: flex-start;
+  color: #a4a4a4;
+  margin-bottom: 5px;
+`
 
 export const OutgoingMessageBubble = styled.div`
   padding: 7.5px;
@@ -16,7 +60,6 @@ export const OutgoingMessageBubble = styled.div`
   border-radius: 4px;
   align-self: flex-end;
   max-width: 180px;
-  margin-top: 15px;
 `;
 
 export const IncomingMessageBubble = styled(OutgoingMessageBubble)`
@@ -42,8 +85,8 @@ export const MessageTextArea = styled.textarea`
 
 export const MessageTextAreaContainer = styled.div`
   display: flex;
-  width: 100%;
   box-sizing: border-box;
+  margin: 0px 15px 15px 15px;
 `;
 
 export const Actions = styled.div`

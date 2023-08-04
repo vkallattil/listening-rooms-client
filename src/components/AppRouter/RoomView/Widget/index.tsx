@@ -47,7 +47,6 @@ function Widget({ widgetUrl }: WidgetProps) {
               setCurrentSound(currentSound);
             });
             widget.getSounds((sounds) => {
-              console.log(sounds);
               setSounds(sounds);
             });
           },

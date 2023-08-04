@@ -5,24 +5,32 @@ import React, {
   useState,
   useContext,
 } from "react";
-import { useParams } from "react-router-dom";
 
 export interface SocketContextValue {
   sendMessage: (message: string) => void;
   changeRoom: (roomId: string) => void;
-  sendChat: (roomID: string, message: string) => void;
+  sendChat: (message: ChatMessage) => void;
   setSendPlayback: React.Dispatch<React.SetStateAction<string | null>>;
+  socketID: string | null;
+  chats: ChatMessage[];
+  currentSocket: WebSocket | null;
 }
 
 export const SocketContext = createContext<SocketContextValue | null>(null);
+
+export interface ChatMessage {
+  message: string;
+  senderName: string;
+  senderID: string;
+}
 
 function SocketProvider({ children }: { children: React.ReactNode }) {
   const socket = useRef<WebSocket | null>(null);
 
   const [receivedPlayback, setReceivedPlayback] = useState<string | null>(null);
   const [sendPlayback, setSendPlayback] = useState<string | null>(null);
-
-  const [chats, setChats] = useState([])
+  const [socketID, setSocketID] = useState<string | null>(null);
+  const [chats, setChats] = useState<ChatMessage[]>([])
 
   const sendMessage = (message: any) => {
     if (socket.current && socket.current.readyState === WebSocket.OPEN) {
@@ -31,14 +39,12 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   };
 
   const changeRoom = (roomID: string | null) => {
+    console.log("Changing to room in changeRoom: " + roomID)
     sendMessage({ type: "CHANGE_ROOM", payload: roomID });
   };
 
-  const sendChat = (roomID: string, message: string, ) => {
-    sendMessage({ type: "CHAT", payload: {
-      roomID: roomID,
-      message: message,
-    } });
+  const sendChat = (chatMessage: ChatMessage) => {
+    sendMessage({ type: "CHAT", payload: chatMessage });
   };
 
   useEffect(() => {
@@ -69,7 +75,11 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (data.type === "CHAT") {
-        setChats([])
+        setChats(data.payload)
+      }
+
+      if (data.type === "SOCKET_ID") {
+        setSocketID(data.payload);
       }
     };
 
@@ -87,6 +97,9 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
         changeRoom,
         sendChat,
         setSendPlayback,
+        socketID,
+        chats,
+        currentSocket: socket.current,
       }}
     >
       {children}

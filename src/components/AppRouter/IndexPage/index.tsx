@@ -4,12 +4,11 @@ import Text from "../../_base/Text";
 import { useSocket } from "../../SocketProvider";
 
 function IndexPage() {
-  const { changeRoom } = useSocket();
+  const { changeRoom, currentSocket } = useSocket();
 
   useEffect(() => {
-    changeRoom("");
-    console.log("changed room");
-  }, []);
+    currentSocket && changeRoom("");
+  }, [currentSocket]);
 
   return <Text type="h1">Select a room</Text>;
 }

@@ -20,8 +20,9 @@ export const PanelTwo = styled.div`
   display: none;
   flex-direction: column;
   width: 30%;
+  height: 100%;
+  max-height: 100%;
   min-width: 250px;
-  padding: 15px;
   @media only screen and (min-width: 1200px) {
     display: flex;
   }

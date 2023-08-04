@@ -30,6 +30,7 @@ export type Widget = {
 };
 
 export type SoundObject = {
+  policy(policy: any): unknown;
   monetization_model: string;
   id: string;
   title: string;
