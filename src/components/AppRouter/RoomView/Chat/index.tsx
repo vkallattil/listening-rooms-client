@@ -47,7 +47,7 @@ function Chat() {
             Hey! Send some messages!
           </styled.IncomingMessageBubble>
           {chats &&
-            chats.map((message) => {
+            chats.map((message, index) => {
               if (message.senderID == socketID) {
                 return (
                   <styled.Message>

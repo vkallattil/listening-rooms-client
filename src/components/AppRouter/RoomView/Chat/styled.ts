@@ -4,7 +4,7 @@ export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 15px;
+  padding: 0px 15px;
   overflow-y: scroll;
   box-sizing: content-box;
 `;
@@ -14,6 +14,7 @@ export const ChatHeader = styled.div`
   border-bottom: 2px solid #e4e4e4;
   align-items: center;
   padding: 5px 8px;
+  margin-bottom: 15px;
 `
 
 export const ChatTitle = styled.div`
@@ -36,7 +37,6 @@ export const ChatWindow = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-bottom: 15px;
 `;
 
 export const Message = styled.div`
@@ -86,7 +86,7 @@ export const MessageTextArea = styled.textarea`
 export const MessageTextAreaContainer = styled.div`
   display: flex;
   box-sizing: border-box;
-  margin: 0px 15px 15px 15px;
+  margin: 15px 15px 15px 15px;
 `;
 
 export const Actions = styled.div`
