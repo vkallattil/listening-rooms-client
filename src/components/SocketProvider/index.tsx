@@ -38,7 +38,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   const socket = useRef<WebSocket | null>(null);
 
   const [socketID, setSocketID] = useState<string | null>(null);
-  
+
   const [chats, setChats] = useState<ChatMessage[]>([]);
 
   const [widget, setWidget] = useState<Widget | null>(null);
@@ -55,7 +55,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   };
 
   const changeRoom = (roomID: string | null) => {
-    console.log("Changing to room in changeRoom: " + roomID)
+    console.log("Changing to room in changeRoom: " + roomID);
     sendMessage({ type: "CHANGE_ROOM", payload: roomID });
   };
 
@@ -72,43 +72,44 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   const play = () => {
     widget.play();
     setIsPlaying(true);
-  }
+  };
 
   const pause = () => {
     widget.pause();
     setIsPlaying(false);
-  }
+  };
 
   useEffect(() => {
     socket.current = new WebSocket(process.env.REACT_APP_SOCKET_URL);
 
-    return () => {
-      if (socket.current) {
-        socket.current.close();
+    // Widget can't play or pause if it's not loaded.
+    if (widget) {
+      socket.current.onmessage = (event) => {
+        const data = JSON.parse(event.data);
 
-        socket.current.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-    
-          if (data.type === "PLAYBACK") {
-            if (data.payload === "PAUSE") {
-              pause();
-            }
-            if (data.payload === "PLAY") {
-              play();
-            }
+        if (data.type === "PLAYBACK") {
+          if (data.payload === "PAUSE") {
+            pause();
           }
-  
-          if (data.type === "CHAT") {
-            setChats(data.payload)
+          if (data.payload === "PLAY") {
+            play();
           }
-    
-          if (data.type === "SOCKET_ID") {
-            setSocketID(data.payload);
-          }  
-        };
-      }
+        }
+
+        if (data.type === "CHAT") {
+          setChats(data.payload);
+        }
+
+        if (data.type === "SOCKET_ID") {
+          setSocketID(data.payload);
+        }
+      };
+    }
+
+    return () => {
+      socket.current.close();
     };
-  }, []);
+  }, [widget]);
 
   return (
     <SocketContext.Provider
