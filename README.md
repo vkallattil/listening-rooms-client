@@ -16,4 +16,4 @@ Synchronized listening rooms for SoundCloud streams, with custom audio player an
 * Room search doesn't work yet, it just looks pretty.
 * Browser support is limited right now to just Google Chrome and Safari, and is a big work in progress.
 * Not responsive to mobile screen sizes or slightly smaller screen sizes in general.
-* As mentioned before, there is a need for user authentication for more seamless chat and interaction support, but that's not a priority for a minimum viable instance of the app. Practically the app is working once all playback syncing, chat, and crud features are robust, and the app runs properly and mobile-responsive on all browsers with no major UI/UX issues.
+* As mentioned before, there is a need for user authentication for more seamless chat and interaction support and for provisioning permissions, but that's not a priority for a minimum viable instance of the app. Practically the app is working once all playback syncing, chat, and crud features are robust, and the app runs properly and mobile-responsive on all browsers with no major UI/UX issues.
