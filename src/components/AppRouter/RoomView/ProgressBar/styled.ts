@@ -26,7 +26,7 @@ export const Input = styled.input`
     height: 5px;
     border-radius: 8px;
   }
-  &::moz-range-track {
+  &::-moz-range-track {
     background: #ffffff;
     height: 5px;
     border-radius: 8px;
@@ -46,9 +46,9 @@ export const Input = styled.input`
   }
   &::-moz-range-thumb {
     border: 5px solid #ffffff;
-    border-radius: 22px;
-    height: 22px;
-    width: 22px;
+    border-radius: 18px;
+    height: 18px;
+    width: 18px;
     background-color: #ffa08b;
     transition: 0.2s;
     cursor: grab;

@@ -62,5 +62,6 @@ export const SearchBar = styled.input<{ focus: boolean }>`
   &::placeholder {
     color: ${(props) => (props.focus ? "#FFA08B" : "#747474")};
     transition: 0.2s;
+    opacity: 1;
   }
 `;
