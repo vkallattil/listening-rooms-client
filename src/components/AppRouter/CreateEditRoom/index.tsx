@@ -23,13 +23,11 @@ function CreateEditRoom() {
       label: name,
       widgetUrl: widgetUrl,
     }).then((room: Room) => {
-      console.log(room);
       navigate(`/rooms/${room.id}`);
     });
   };
 
   const handleEditRoom = () => {
-    console.log(match.params.roomId);
     updateRoom({
       id: match.params.roomId,
       label: name,

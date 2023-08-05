@@ -15,6 +15,7 @@ type LoadOptions = {
 };
 
 export type Widget = {
+  getCurrentSoundIndex(arg0: (id: number) => void): unknown;
   getPosition(arg0: (position: number) => void): unknown;
   prev(): unknown;
   next(): unknown;

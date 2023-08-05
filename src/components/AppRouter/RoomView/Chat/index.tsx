@@ -10,10 +10,6 @@ function Chat() {
   const [name, setName] = useState<string>("Some Idiot");
   const [writingMessage, setWritingMessage] = useState<string>("");
 
-  useEffect(() => {
-    console.log(chats);
-  }, [chats])
-
   const handleSendMessage = () => {
     if (writingMessage !== "") {
       const newMessage = {
@@ -21,7 +17,6 @@ function Chat() {
         message: writingMessage,
         senderName: name,
       };
-      console.log(newMessage);
       sendChat(newMessage);
       setWritingMessage("");
     }

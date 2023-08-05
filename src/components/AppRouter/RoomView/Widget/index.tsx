@@ -18,22 +18,45 @@ export interface WidgetProps {
 
 function Widget({ widgetUrl }: WidgetProps) {
   const widgetRef = useRef<HTMLIFrameElement>(null);
+  const loaderWidgetRef = useRef<HTMLIFrameElement>(null);
+  const notComplete = useRef(false)
 
   const {
     sendPlayback,
     sendSeek,
+    sendSkip,
     widget,
     setWidget,
+    sounds,
     setSounds,
     currentSound,
     setCurrentSound,
     isPlaying,
     songPosition,
-    setSongPosition
+    setSongPosition,
   } = useSocket();
 
   const [onRepeat, setOnRepeat] = useState(false);
   const [onShuffle, setOnShuffle] = useState(false);
+
+  const tryGetSounds = () => {
+    widget.getSounds((sounds) => {
+      for (const sound of sounds) {
+        if (!sound.title && !sound.user) {
+          notComplete.current = true;
+          break;
+        } else {
+          notComplete.current = false;
+        }
+      }
+
+      if (notComplete.current) {
+        setTimeout(tryGetSounds, 200);
+      } else {
+        setSounds(sounds);
+      }
+    });
+  }
 
   // Initialize SC widget when iframe renders.
   useEffect(() => {
@@ -51,9 +74,7 @@ function Widget({ widgetUrl }: WidgetProps) {
             widget.getCurrentSound((currentSound: SoundObject) => {
               setCurrentSound(currentSound);
             });
-            widget.getSounds((sounds) => {
-              setSounds(sounds);
-            });
+            tryGetSounds();
           },
         });
         widget.bind(SC.Widget.Events.PLAY, () => {});
@@ -69,6 +90,12 @@ function Widget({ widgetUrl }: WidgetProps) {
     <>
       <styled.IFrame
         ref={widgetRef}
+        frameBorder="no"
+        allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293&amp;"
+      />
+      <styled.IFrame
+        ref={loaderWidgetRef}
         frameBorder="no"
         allow="autoplay"
         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293&amp;"
@@ -99,10 +126,11 @@ function Widget({ widgetUrl }: WidgetProps) {
             </styled.QueueChangeButton>
             <styled.PlaybackButton
               onClick={() => {
-                widget.prev();
-                sendPlayback("PAUSE");
-                widget.getCurrentSound((currentSound: SoundObject) => {
-                  setCurrentSound(currentSound);
+                widget.getCurrentSoundIndex((id: number) => {
+                  if (id - 1 >= 0) {
+                    sendSkip(id - 1);
+                    sendPlayback("PAUSE");
+                  }
                 });
               }}
             >
@@ -114,8 +142,8 @@ function Widget({ widgetUrl }: WidgetProps) {
                 onClick={() => {
                   sendPlayback("PAUSE");
                   widget.getPosition((position: number) => {
-                    sendSeek(position)
-                  })              
+                    sendSeek(position);
+                  });
                 }}
               >
                 <styled.Icon type="large" icon={faPause} />
@@ -125,8 +153,8 @@ function Widget({ widgetUrl }: WidgetProps) {
                 onClick={() => {
                   sendPlayback("PLAY");
                   widget.getPosition((position: number) => {
-                    sendSeek(position)
-                  })              
+                    sendSeek(position);
+                  });
                 }}
               >
                 <styled.Icon type="large" icon={faPlay} />
@@ -135,10 +163,11 @@ function Widget({ widgetUrl }: WidgetProps) {
 
             <styled.PlaybackButton
               onClick={() => {
-                widget.next();
-                sendPlayback("PAUSE");
-                widget.getCurrentSound((currentSound: SoundObject) => {
-                  setCurrentSound(currentSound);
+                widget.getCurrentSoundIndex((id: number) => {
+                  if (id + 1 < sounds.length) {
+                    sendSkip(id + 1);
+                    sendPlayback("PAUSE");
+                  }
                 });
               }}
             >

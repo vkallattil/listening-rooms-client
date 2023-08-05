@@ -60,7 +60,6 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   };
 
   const changeRoom = (roomID: string | null) => {
-    console.log("Changing to room in changeRoom: " + roomID);
     sendMessage({ type: "CHANGE_ROOM", payload: roomID });
   };
 
@@ -97,7 +96,6 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   }
 
   const skip = (id: number) => {
-    console.log("Skipping to: " + id)
     widget.skip(id);
     widget.getCurrentSound((currentSound: SoundObject) => {
       setCurrentSound(currentSound);

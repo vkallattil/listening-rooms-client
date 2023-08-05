@@ -5,7 +5,7 @@ import { formatTime } from "../../../../utils/dates";
 import { useSocket } from "../../../SocketProvider";
 
 function SongQueue() {
-  const { sendPlayback, sounds, currentSound, setCurrentSound, sendSkip } = useSocket();
+  const { sendPlayback, sounds, currentSound, sendSkip } = useSocket();
 
   return (
     <styled.SongQueueContainer>
