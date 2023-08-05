@@ -14,6 +14,8 @@ export const PanelOne = styled.div`
   @media only screen and (min-width: 1200px) {
     border-right: 2px solid #e4e4e4;
   }
+  max-height: 100%;
+  overflow-y: scroll;
 `;
 
 export const PanelTwo = styled.div`
