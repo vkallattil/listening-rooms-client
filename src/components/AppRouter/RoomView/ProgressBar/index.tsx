@@ -9,14 +9,14 @@ interface ProgressBarProps {
 }
 
 function ProgressBar({ duration, songPosition }: ProgressBarProps) {
-  const { widget } = useSocket();
+  const { widget, sendSeek } = useSocket();
 
   const inputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     inputRef.current.addEventListener("change", function () {
-      widget.seekTo(inputRef.current.value);
+      sendSeek(parseInt(inputRef.current.value));
       setIsDragging(false);
     });
 

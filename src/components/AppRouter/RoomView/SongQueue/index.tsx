@@ -5,7 +5,7 @@ import { formatTime } from "../../../../utils/dates";
 import { useSocket } from "../../../SocketProvider";
 
 function SongQueue() {
-  const { sendPlayback, widget, sounds, currentSound, setCurrentSound } = useSocket();
+  const { sendPlayback, sounds, currentSound, setCurrentSound, sendSkip } = useSocket();
 
   return (
     <styled.SongQueueContainer>
@@ -26,9 +26,8 @@ function SongQueue() {
           return (
             <styled.ListItem
               onClick={() => {
-                widget.skip(index);
-                sendPlayback("PAUSE")
-                setCurrentSound(sound);
+                sendSkip(index);
+                sendPlayback("PAUSE");
               }}
               isCurrent={currentSound.id === sound.id ? true : false}
             >

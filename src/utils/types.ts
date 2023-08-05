@@ -15,6 +15,7 @@ type LoadOptions = {
 };
 
 export type Widget = {
+  getPosition(arg0: (position: number) => void): unknown;
   prev(): unknown;
   next(): unknown;
   skip: (index: number) => unknown;

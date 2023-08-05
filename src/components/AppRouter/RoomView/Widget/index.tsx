@@ -21,15 +21,16 @@ function Widget({ widgetUrl }: WidgetProps) {
 
   const {
     sendPlayback,
+    sendSeek,
     widget,
     setWidget,
     setSounds,
     currentSound,
     setCurrentSound,
     isPlaying,
+    songPosition,
+    setSongPosition
   } = useSocket();
-
-  const [songPosition, setSongPosition] = useState<number>(0);
 
   const [onRepeat, setOnRepeat] = useState(false);
   const [onShuffle, setOnShuffle] = useState(false);
@@ -112,6 +113,9 @@ function Widget({ widgetUrl }: WidgetProps) {
               <styled.PlaybackButton
                 onClick={() => {
                   sendPlayback("PAUSE");
+                  widget.getPosition((position: number) => {
+                    sendSeek(position)
+                  })              
                 }}
               >
                 <styled.Icon type="large" icon={faPause} />
@@ -120,6 +124,9 @@ function Widget({ widgetUrl }: WidgetProps) {
               <styled.PlaybackButton
                 onClick={() => {
                   sendPlayback("PLAY");
+                  widget.getPosition((position: number) => {
+                    sendSeek(position)
+                  })              
                 }}
               >
                 <styled.Icon type="large" icon={faPlay} />

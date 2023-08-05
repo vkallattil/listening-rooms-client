@@ -13,6 +13,8 @@ export interface SocketContextValue {
   changeRoom: (roomId: string) => void;
   sendChat: (message: ChatMessage) => void;
   sendPlayback: React.Dispatch<React.SetStateAction<string | null>>;
+  sendSeek: (position: number) => void;
+  sendSkip: (position: number) => void;
   socketID: string | null;
   chats: ChatMessage[];
   currentSocket: WebSocket | null;
@@ -24,6 +26,8 @@ export interface SocketContextValue {
   setCurrentSound: React.Dispatch<React.SetStateAction<SoundObject | null>>;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  songPosition: number;
+  setSongPosition: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const SocketContext = createContext<SocketContextValue | null>(null);
@@ -44,6 +48,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   const [widget, setWidget] = useState<Widget | null>(null);
   const [sounds, setSounds] = useState<SoundObject[]>([]);
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
+  const [songPosition, setSongPosition] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   // Socket methods.
@@ -67,6 +72,14 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
     sendMessage({ type: "PLAYBACK", payload: playback });
   };
 
+  const sendSkip = (id: number) => {
+    sendMessage({ type: "SKIP", payload: id });
+  };
+
+  const sendSeek = (position: number) => {
+    sendMessage({ type: "SEEK", payload: position });
+  };
+
   // Widget methods
 
   const play = () => {
@@ -78,6 +91,21 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
     widget.pause();
     setIsPlaying(false);
   };
+
+  const seek = (position: number) => {
+    widget.seekTo(position);
+  }
+
+  const skip = (id: number) => {
+    console.log("Skipping to: " + id)
+    widget.skip(id);
+    widget.getCurrentSound((currentSound: SoundObject) => {
+      setCurrentSound(currentSound);
+    });
+    widget.getPosition((position: number) => {
+      setSongPosition(position);
+    });
+  }
 
   useEffect(() => {
     socket.current = new WebSocket(process.env.REACT_APP_SOCKET_URL);
@@ -94,6 +122,14 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
           if (data.payload === "PLAY") {
             play();
           }
+        }
+
+        if (data.type === "SEEK") {
+          seek(data.payload);
+        }
+
+        if (data.type === "SKIP") {
+          skip(data.payload);
         }
 
         if (data.type === "CHAT") {
@@ -117,7 +153,9 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
         sendMessage,
         changeRoom,
         sendChat,
-        sendPlayback: sendPlayback,
+        sendPlayback,
+        sendSkip,
+        sendSeek,
         socketID,
         chats,
         currentSocket: socket.current,
@@ -129,6 +167,8 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
         setCurrentSound,
         isPlaying,
         setIsPlaying,
+        songPosition,
+        setSongPosition,
       }}
     >
       {children}
