@@ -8,7 +8,6 @@ import IndexPage from "./IndexPage";
 import SocketProvider from "../SocketProvider";
 import RoomsProvider from "../RoomsProvider";
 import CreateEditRoom from "./CreateEditRoom";
-import WidgetProvider from "../WidgetProvider";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +37,9 @@ const router = createBrowserRouter([
 function AppRouter() {
   return (
     <SocketProvider>
-      <WidgetProvider>
-        <RoomsProvider>
-          <RouterProvider router={router} />
-        </RoomsProvider>
-      </WidgetProvider>
+      <RoomsProvider>
+        <RouterProvider router={router} />
+      </RoomsProvider>
     </SocketProvider>
   );
 }

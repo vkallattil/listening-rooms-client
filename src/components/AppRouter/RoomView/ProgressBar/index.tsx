@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { useWidget } from "../../../WidgetProvider";
+import { useSocket } from "../../../SocketProvider";
 import * as styled from "./styled";
 import { formatTime } from "../../../../utils/dates";
 
@@ -9,7 +9,7 @@ interface ProgressBarProps {
 }
 
 function ProgressBar({ duration, songPosition }: ProgressBarProps) {
-  const { widget } = useWidget();
+  const { widget } = useSocket();
 
   const inputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);

@@ -2,10 +2,10 @@ import React from "react";
 import * as styled from "./styled";
 import Text from "../../../_base/Text";
 import { formatTime } from "../../../../utils/dates";
-import { useWidget } from "../../../WidgetProvider";
+import { useSocket } from "../../../SocketProvider";
 
 function SongQueue() {
-  const { widget, sounds, currentSound, setCurrentSound } = useWidget();
+  const { sendPlayback, widget, sounds, currentSound, setCurrentSound } = useSocket();
 
   return (
     <styled.SongQueueContainer>
@@ -27,6 +27,7 @@ function SongQueue() {
             <styled.ListItem
               onClick={() => {
                 widget.skip(index);
+                sendPlayback("PAUSE")
                 setCurrentSound(sound);
               }}
               isCurrent={currentSound.id === sound.id ? true : false}

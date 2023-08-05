@@ -11,7 +11,6 @@ import {
   faRepeat,
 } from "../../../../utils/icons";
 import ProgressBar from "../ProgressBar";
-import { useWidget } from "../../../WidgetProvider";
 
 export interface WidgetProps {
   widgetUrl: string;
@@ -19,12 +18,17 @@ export interface WidgetProps {
 
 function Widget({ widgetUrl }: WidgetProps) {
   const widgetRef = useRef<HTMLIFrameElement>(null);
-  const { widget, setWidget, setSounds, currentSound, setCurrentSound } =
-    useWidget();
 
-  const { sendPlayback } = useSocket();
+  const {
+    sendPlayback,
+    widget,
+    setWidget,
+    setSounds,
+    currentSound,
+    setCurrentSound,
+    isPlaying,
+  } = useSocket();
 
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [songPosition, setSongPosition] = useState<number>(0);
 
   const [onRepeat, setOnRepeat] = useState(false);
@@ -51,12 +55,8 @@ function Widget({ widgetUrl }: WidgetProps) {
             });
           },
         });
-        widget.bind(SC.Widget.Events.PLAY, () => {
-          setIsPlaying(true);
-        });
-        widget.bind(SC.Widget.Events.PAUSE, () => {
-          setIsPlaying(false);
-        });
+        widget.bind(SC.Widget.Events.PLAY, () => {});
+        widget.bind(SC.Widget.Events.PAUSE, () => {});
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
           setSongPosition(e.currentPosition);
         });
@@ -99,6 +99,7 @@ function Widget({ widgetUrl }: WidgetProps) {
             <styled.PlaybackButton
               onClick={() => {
                 widget.prev();
+                sendPlayback("PAUSE");
                 widget.getCurrentSound((currentSound: SoundObject) => {
                   setCurrentSound(currentSound);
                 });
@@ -128,6 +129,7 @@ function Widget({ widgetUrl }: WidgetProps) {
             <styled.PlaybackButton
               onClick={() => {
                 widget.next();
+                sendPlayback("PAUSE");
                 widget.getCurrentSound((currentSound: SoundObject) => {
                   setCurrentSound(currentSound);
                 });

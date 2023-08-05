@@ -9,15 +9,13 @@ import { faEdit, faTrash } from "../../../utils/icons";
 import Widget from "./Widget";
 import Chat from "./Chat";
 import SongQueue from "./SongQueue";
-import { useWidget } from "../../WidgetProvider";
 import { useSocket } from "../../SocketProvider";
 
 function RoomView() {
   const { roomId } = useParams();
   const { removeRoom } = useRooms();
-  const { changeRoom, currentSocket } = useSocket();
+  const { changeRoom, currentSocket, sounds } = useSocket();
   const navigate = useNavigate();
-  const { sounds } = useWidget();
 
   const [room, setRoom] = useState(null);
   const [loading, setLoading] = useState(true);
