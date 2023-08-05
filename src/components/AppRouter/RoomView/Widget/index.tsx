@@ -18,7 +18,6 @@ export interface WidgetProps {
 
 function Widget({ widgetUrl }: WidgetProps) {
   const widgetRef = useRef<HTMLIFrameElement>(null);
-  const loaderWidgetRef = useRef<HTMLIFrameElement>(null);
   const notComplete = useRef(false)
 
   const {
@@ -90,12 +89,6 @@ function Widget({ widgetUrl }: WidgetProps) {
     <>
       <styled.IFrame
         ref={widgetRef}
-        frameBorder="no"
-        allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293&amp;"
-      />
-      <styled.IFrame
-        ref={loaderWidgetRef}
         frameBorder="no"
         allow="autoplay"
         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293&amp;"
