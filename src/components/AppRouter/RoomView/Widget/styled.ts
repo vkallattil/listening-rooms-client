@@ -125,7 +125,6 @@ export const PlaybackButton = styled.button`
 
 export const QueueChangeButton = styled(PlaybackButton)<{ isActive: boolean }>`
   & > svg {
-    transition: 0.2s;
     color: ${props => props.isActive ? "#ffffff" : "#000000"};
     opacity: ${props => props.isActive ? 1 : 0.15};
 

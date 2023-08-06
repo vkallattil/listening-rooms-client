@@ -35,8 +35,7 @@ export const NameInput = styled.input`
 export const ChatWindow = styled.div`
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: column-reverse;
 `;
 
 export const Message = styled.div`

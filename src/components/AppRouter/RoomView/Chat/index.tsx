@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import * as styled from "./styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "../../../../utils/icons";
-import { useSocket, ChatMessage } from "../../../SocketProvider";
+import { useSocket } from "../../../SocketProvider";
 
 function Chat() {
   const { sendChat, socketID, chats } = useSocket();
 
   const [name, setName] = useState<string>("Some Idiot");
   const [writingMessage, setWritingMessage] = useState<string>("");
+
+  const reverseChats = () => {
+    const newChats = chats.map((_, index) => chats[chats.length - 1 - index]);
+    console.log(newChats)
+    return newChats
+  }
 
   const handleSendMessage = () => {
     if (writingMessage !== "") {
@@ -42,11 +48,8 @@ function Chat() {
       </styled.ChatHeader>
       <styled.ChatContainer>
         <styled.ChatWindow>
-          <styled.IncomingMessageBubble>
-            Hey! Send some messages!
-          </styled.IncomingMessageBubble>
           {chats &&
-            chats.map((message) => {
+            reverseChats().map((message) => {
               if (message.senderID == socketID) {
                 return (
                   <styled.Message>

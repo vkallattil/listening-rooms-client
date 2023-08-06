@@ -44,7 +44,6 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   const [socketID, setSocketID] = useState<string | null>(null);
 
   const [chats, setChats] = useState<ChatMessage[]>([]);
-
   const [widget, setWidget] = useState<Widget | null>(null);
   const [sounds, setSounds] = useState<SoundObject[]>([]);
   const [currentSound, setCurrentSound] = useState<SoundObject | null>(null);
