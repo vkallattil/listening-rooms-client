@@ -10,12 +10,6 @@ function Chat() {
   const [name, setName] = useState<string>("Some Idiot");
   const [writingMessage, setWritingMessage] = useState<string>("");
 
-  const reverseChats = () => {
-    const newChats = chats.map((_, index) => chats[chats.length - 1 - index]);
-    console.log(newChats)
-    return newChats
-  }
-
   const handleSendMessage = () => {
     if (writingMessage !== "") {
       const newMessage = {
@@ -49,7 +43,7 @@ function Chat() {
       <styled.ChatContainer>
         <styled.ChatWindow>
           {chats &&
-            reverseChats().map((message) => {
+            chats.map((message) => {
               if (message.senderID == socketID) {
                 return (
                   <styled.Message>
