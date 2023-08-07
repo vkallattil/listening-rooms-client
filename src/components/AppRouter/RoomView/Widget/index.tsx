@@ -122,7 +122,6 @@ function Widget({ widgetUrl }: WidgetProps) {
                 widget.getCurrentSoundIndex((id: number) => {
                   if (id - 1 >= 0) {
                     sendSkip(id - 1);
-                    sendPlayback("PAUSE");
                   }
                 });
               }}
@@ -159,7 +158,6 @@ function Widget({ widgetUrl }: WidgetProps) {
                 widget.getCurrentSoundIndex((id: number) => {
                   if (id + 1 < sounds.length) {
                     sendSkip(id + 1);
-                    sendPlayback("PAUSE");
                   }
                 });
               }}
