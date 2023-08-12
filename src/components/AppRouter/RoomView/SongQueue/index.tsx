@@ -26,8 +26,8 @@ function SongQueue() {
           return (
             <styled.ListItem
               onClick={() => {
+                sendPlayback("PLAY")
                 sendSkip(index);
-                sendPlayback("PAUSE");
               }}
               isCurrent={currentSound.id === sound.id ? true : false}
             >

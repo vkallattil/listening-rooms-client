@@ -35,7 +35,8 @@ export const NameInput = styled.input`
 export const ChatWindow = styled.div`
   flex-grow: 1;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const Message = styled.div`
@@ -59,6 +60,7 @@ export const OutgoingMessageBubble = styled.div`
   border-radius: 4px;
   align-self: flex-end;
   max-width: 180px;
+  word-wrap: break-word;
 `;
 
 export const IncomingMessageBubble = styled(OutgoingMessageBubble)`

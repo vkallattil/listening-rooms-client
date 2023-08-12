@@ -111,12 +111,12 @@ function Widget({ widgetUrl }: WidgetProps) {
           />
 
           <styled.PlaybackContainer>
-            <styled.QueueChangeButton
+            {/* <styled.QueueChangeButton
               isActive={onShuffle}
               onClick={() => setOnShuffle(!onShuffle)}
             >
               <styled.Icon type="small" icon={faRandom} />
-            </styled.QueueChangeButton>
+            </styled.QueueChangeButton> */}
             <styled.PlaybackButton
               onClick={() => {
                 widget.getCurrentSoundIndex((id: number) => {
@@ -164,12 +164,12 @@ function Widget({ widgetUrl }: WidgetProps) {
             >
               <styled.Icon type="medium" icon={faForward} />
             </styled.PlaybackButton>
-            <styled.QueueChangeButton
+            {/* <styled.QueueChangeButton
               isActive={onRepeat}
               onClick={() => setOnRepeat(!onRepeat)}
             >
               <styled.Icon type="small" icon={faRepeat} />
-            </styled.QueueChangeButton>
+            </styled.QueueChangeButton> */}
           </styled.PlaybackContainer>
         </styled.WidgetContainer>
       )}
