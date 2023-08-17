@@ -5,10 +5,10 @@ import { SoundObject, Widget } from "../../../../utils/types";
 import {
   faPause,
   faPlay,
-  faRandom,
+  // faRandom,
   faBackward,
   faForward,
-  faRepeat,
+  // faRepeat,
 } from "../../../../utils/icons";
 import ProgressBar from "../ProgressBar";
 
@@ -35,8 +35,8 @@ function Widget({ widgetUrl }: WidgetProps) {
     setSongPosition,
   } = useSocket();
 
-  const [onRepeat, setOnRepeat] = useState(false);
-  const [onShuffle, setOnShuffle] = useState(false);
+  // const [onRepeat, setOnRepeat] = useState(false);
+  // const [onShuffle, setOnShuffle] = useState(false);
 
   const tryGetSounds = () => {
     widget.getSounds((sounds) => {
@@ -80,6 +80,11 @@ function Widget({ widgetUrl }: WidgetProps) {
         widget.bind(SC.Widget.Events.PAUSE, () => {});
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, (e: any) => {
           setSongPosition(e.currentPosition);
+        });
+        widget.bind(SC.Widget.Events.FINISH, () => {
+          widget.getCurrentSoundIndex((id: number) => {
+            sendSkip(id);
+          });
         });
       });
     }
